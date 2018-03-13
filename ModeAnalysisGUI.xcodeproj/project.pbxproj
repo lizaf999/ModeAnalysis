@@ -1,0 +1,436 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C347B88A20577E93000232FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C347B88920577E92000232FC /* AppDelegate.swift */; };
+		C347B88C20577E93000232FC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C347B88B20577E93000232FC /* ViewController.swift */; };
+		C347B88E20577E93000232FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C347B88D20577E93000232FC /* Assets.xcassets */; };
+		C347B89120577E93000232FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C347B88F20577E93000232FC /* Main.storyboard */; };
+		C347B89D20577E93000232FC /* ModeAnalysisGUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C347B89C20577E93000232FC /* ModeAnalysisGUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C347B89920577E93000232FC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C347B87E20577E92000232FC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C347B88520577E92000232FC;
+			remoteInfo = ModeAnalysisGUI;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C347B88620577E92000232FC /* ModeAnalysisGUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ModeAnalysisGUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C347B88920577E92000232FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C347B88B20577E93000232FC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C347B88D20577E93000232FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C347B89020577E93000232FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C347B89220577E93000232FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C347B89320577E93000232FC /* ModeAnalysisGUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ModeAnalysisGUI.entitlements; sourceTree = "<group>"; };
+		C347B89820577E93000232FC /* ModeAnalysisGUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ModeAnalysisGUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C347B89C20577E93000232FC /* ModeAnalysisGUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeAnalysisGUITests.swift; sourceTree = "<group>"; };
+		C347B89E20577E93000232FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C347B88320577E92000232FC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C347B89520577E93000232FC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C347B87D20577E92000232FC = {
+			isa = PBXGroup;
+			children = (
+				C347B88820577E92000232FC /* ModeAnalysisGUI */,
+				C347B89B20577E93000232FC /* ModeAnalysisGUITests */,
+				C347B88720577E92000232FC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C347B88720577E92000232FC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C347B88620577E92000232FC /* ModeAnalysisGUI.app */,
+				C347B89820577E93000232FC /* ModeAnalysisGUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C347B88820577E92000232FC /* ModeAnalysisGUI */ = {
+			isa = PBXGroup;
+			children = (
+				C347B88920577E92000232FC /* AppDelegate.swift */,
+				C347B88B20577E93000232FC /* ViewController.swift */,
+				C347B88D20577E93000232FC /* Assets.xcassets */,
+				C347B88F20577E93000232FC /* Main.storyboard */,
+				C347B89220577E93000232FC /* Info.plist */,
+				C347B89320577E93000232FC /* ModeAnalysisGUI.entitlements */,
+			);
+			path = ModeAnalysisGUI;
+			sourceTree = "<group>";
+		};
+		C347B89B20577E93000232FC /* ModeAnalysisGUITests */ = {
+			isa = PBXGroup;
+			children = (
+				C347B89C20577E93000232FC /* ModeAnalysisGUITests.swift */,
+				C347B89E20577E93000232FC /* Info.plist */,
+			);
+			path = ModeAnalysisGUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C347B88520577E92000232FC /* ModeAnalysisGUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C347B8A120577E93000232FC /* Build configuration list for PBXNativeTarget "ModeAnalysisGUI" */;
+			buildPhases = (
+				C347B88220577E92000232FC /* Sources */,
+				C347B88320577E92000232FC /* Frameworks */,
+				C347B88420577E92000232FC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ModeAnalysisGUI;
+			productName = ModeAnalysisGUI;
+			productReference = C347B88620577E92000232FC /* ModeAnalysisGUI.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C347B89720577E93000232FC /* ModeAnalysisGUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C347B8A420577E93000232FC /* Build configuration list for PBXNativeTarget "ModeAnalysisGUITests" */;
+			buildPhases = (
+				C347B89420577E93000232FC /* Sources */,
+				C347B89520577E93000232FC /* Frameworks */,
+				C347B89620577E93000232FC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C347B89A20577E93000232FC /* PBXTargetDependency */,
+			);
+			name = ModeAnalysisGUITests;
+			productName = ModeAnalysisGUITests;
+			productReference = C347B89820577E93000232FC /* ModeAnalysisGUITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C347B87E20577E92000232FC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = "石田 展雅";
+				TargetAttributes = {
+					C347B88520577E92000232FC = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					C347B89720577E93000232FC = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = C347B88520577E92000232FC;
+					};
+				};
+			};
+			buildConfigurationList = C347B88120577E92000232FC /* Build configuration list for PBXProject "ModeAnalysisGUI" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C347B87D20577E92000232FC;
+			productRefGroup = C347B88720577E92000232FC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C347B88520577E92000232FC /* ModeAnalysisGUI */,
+				C347B89720577E93000232FC /* ModeAnalysisGUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C347B88420577E92000232FC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C347B88E20577E93000232FC /* Assets.xcassets in Resources */,
+				C347B89120577E93000232FC /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C347B89620577E93000232FC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C347B88220577E92000232FC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C347B88C20577E93000232FC /* ViewController.swift in Sources */,
+				C347B88A20577E93000232FC /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C347B89420577E93000232FC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C347B89D20577E93000232FC /* ModeAnalysisGUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C347B89A20577E93000232FC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C347B88520577E92000232FC /* ModeAnalysisGUI */;
+			targetProxy = C347B89920577E93000232FC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C347B88F20577E93000232FC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C347B89020577E93000232FC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C347B89F20577E93000232FC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C347B8A020577E93000232FC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+			};
+			name = Release;
+		};
+		C347B8A220577E93000232FC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ModeAnalysisGUI/ModeAnalysisGUI.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = ModeAnalysisGUI/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = n.i..ModeAnalysisGUI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		C347B8A320577E93000232FC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ModeAnalysisGUI/ModeAnalysisGUI.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = ModeAnalysisGUI/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = n.i..ModeAnalysisGUI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		C347B8A520577E93000232FC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = ModeAnalysisGUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = n.i..ModeAnalysisGUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ModeAnalysisGUI.app/Contents/MacOS/ModeAnalysisGUI";
+			};
+			name = Debug;
+		};
+		C347B8A620577E93000232FC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = ModeAnalysisGUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = n.i..ModeAnalysisGUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ModeAnalysisGUI.app/Contents/MacOS/ModeAnalysisGUI";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C347B88120577E92000232FC /* Build configuration list for PBXProject "ModeAnalysisGUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C347B89F20577E93000232FC /* Debug */,
+				C347B8A020577E93000232FC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C347B8A120577E93000232FC /* Build configuration list for PBXNativeTarget "ModeAnalysisGUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C347B8A220577E93000232FC /* Debug */,
+				C347B8A320577E93000232FC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C347B8A420577E93000232FC /* Build configuration list for PBXNativeTarget "ModeAnalysisGUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C347B8A520577E93000232FC /* Debug */,
+				C347B8A620577E93000232FC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C347B87E20577E92000232FC /* Project object */;
+}
