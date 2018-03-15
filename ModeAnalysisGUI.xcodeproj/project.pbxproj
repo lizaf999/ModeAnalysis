@@ -7,11 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C347B88A20577E93000232FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C347B88920577E92000232FC /* AppDelegate.swift */; };
 		C347B88C20577E93000232FC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C347B88B20577E93000232FC /* ViewController.swift */; };
-		C347B88E20577E93000232FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C347B88D20577E93000232FC /* Assets.xcassets */; };
-		C347B89120577E93000232FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C347B88F20577E93000232FC /* Main.storyboard */; };
 		C347B89D20577E93000232FC /* ModeAnalysisGUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C347B89C20577E93000232FC /* ModeAnalysisGUITests.swift */; };
+		C3C1CE4F205A47040064B5D1 /* ModeAnalysisWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = C3C1CE4E205A47030064B5D1 /* ModeAnalysisWrapper.mm */; };
+		C3C1CE55205A49B00064B5D1 /* Elements.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C3D222EA205A340F0066E6AB /* Elements.cpp */; };
+		C3C1CE56205A49B00064B5D1 /* ExteriorCalculus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C3D222EC205A34110066E6AB /* ExteriorCalculus.cpp */; };
+		C3C1CE57205A49B00064B5D1 /* HEGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C3D222E9205A340E0066E6AB /* HEGraph.cpp */; };
+		C3C1CE58205A49B00064B5D1 /* ModeAnalysis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C3D222EB205A34100066E6AB /* ModeAnalysis.cpp */; };
+		C3C1CE59205A4ACA0064B5D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C347B88920577E92000232FC /* AppDelegate.swift */; };
+		C3C1CE5C205A6D270064B5D1 /* Polygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C1CE5B205A6D270064B5D1 /* Polygon.swift */; };
+		C3C1CE5E205A6F160064B5D1 /* Primitives.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C1CE5D205A6F160064B5D1 /* Primitives.swift */; };
+		C3C1CE61205A72F00064B5D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3C1CE5F205A72F00064B5D1 /* Main.storyboard */; };
+		C3C1CE63205A72F90064B5D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3C1CE62205A72F90064B5D1 /* Assets.xcassets */; };
+		C3C1CE66205A73010064B5D1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3C1CE65205A73010064B5D1 /* Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,13 +36,23 @@
 		C347B88620577E92000232FC /* ModeAnalysisGUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ModeAnalysisGUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C347B88920577E92000232FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C347B88B20577E93000232FC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		C347B88D20577E93000232FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		C347B89020577E93000232FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		C347B89220577E93000232FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C347B89320577E93000232FC /* ModeAnalysisGUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ModeAnalysisGUI.entitlements; sourceTree = "<group>"; };
 		C347B89820577E93000232FC /* ModeAnalysisGUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ModeAnalysisGUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C347B89C20577E93000232FC /* ModeAnalysisGUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeAnalysisGUITests.swift; sourceTree = "<group>"; };
 		C347B89E20577E93000232FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C347B8A72057AEC7000232FC /* ModeAnalysisGUI-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ModeAnalysisGUI-Bridging-Header.h"; sourceTree = "<group>"; };
+		C3C1CE4B205A44D60064B5D1 /* ModeAnalysisWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModeAnalysisWrapper.h; sourceTree = "<group>"; };
+		C3C1CE4E205A47030064B5D1 /* ModeAnalysisWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ModeAnalysisWrapper.mm; sourceTree = "<group>"; };
+		C3C1CE54205A47F70064B5D1 /* include */ = {isa = PBXFileReference; lastKnownFileType = folder; path = include; sourceTree = "<group>"; };
+		C3C1CE5B205A6D270064B5D1 /* Polygon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Polygon.swift; sourceTree = "<group>"; };
+		C3C1CE5D205A6F160064B5D1 /* Primitives.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Primitives.swift; sourceTree = "<group>"; };
+		C3C1CE60205A72F00064B5D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ModeAnalysisGUI/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C3C1CE62205A72F90064B5D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ModeAnalysisGUI/Assets.xcassets; sourceTree = "<group>"; };
+		C3C1CE64205A73010064B5D1 /* ModeAnalysisGUI.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = ModeAnalysisGUI.entitlements; path = ModeAnalysisGUI/ModeAnalysisGUI.entitlements; sourceTree = "<group>"; };
+		C3C1CE65205A73010064B5D1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ModeAnalysisGUI/Info.plist; sourceTree = "<group>"; };
+		C3D222E9205A340E0066E6AB /* HEGraph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HEGraph.cpp; sourceTree = "<group>"; };
+		C3D222EA205A340F0066E6AB /* Elements.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Elements.cpp; sourceTree = "<group>"; };
+		C3D222EB205A34100066E6AB /* ModeAnalysis.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ModeAnalysis.cpp; sourceTree = "<group>"; };
+		C3D222EC205A34110066E6AB /* ExteriorCalculus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ExteriorCalculus.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +77,10 @@
 			isa = PBXGroup;
 			children = (
 				C347B88820577E92000232FC /* ModeAnalysisGUI */,
+				C3C1CE5F205A72F00064B5D1 /* Main.storyboard */,
+				C3C1CE62205A72F90064B5D1 /* Assets.xcassets */,
+				C3C1CE65205A73010064B5D1 /* Info.plist */,
+				C3C1CE64205A73010064B5D1 /* ModeAnalysisGUI.entitlements */,
 				C347B89B20577E93000232FC /* ModeAnalysisGUITests */,
 				C347B88720577E92000232FC /* Products */,
 			);
@@ -78,10 +100,13 @@
 			children = (
 				C347B88920577E92000232FC /* AppDelegate.swift */,
 				C347B88B20577E93000232FC /* ViewController.swift */,
-				C347B88D20577E93000232FC /* Assets.xcassets */,
-				C347B88F20577E93000232FC /* Main.storyboard */,
-				C347B89220577E93000232FC /* Info.plist */,
-				C347B89320577E93000232FC /* ModeAnalysisGUI.entitlements */,
+				C3C1CE5B205A6D270064B5D1 /* Polygon.swift */,
+				C3C1CE5D205A6F160064B5D1 /* Primitives.swift */,
+				C3C1CE4B205A44D60064B5D1 /* ModeAnalysisWrapper.h */,
+				C3C1CE4E205A47030064B5D1 /* ModeAnalysisWrapper.mm */,
+				C347B8A72057AEC7000232FC /* ModeAnalysisGUI-Bridging-Header.h */,
+				C3C1CE54205A47F70064B5D1 /* include */,
+				C3D222E8205A34010066E6AB /* DDG */,
 			);
 			path = ModeAnalysisGUI;
 			sourceTree = "<group>";
@@ -93,6 +118,17 @@
 				C347B89E20577E93000232FC /* Info.plist */,
 			);
 			path = ModeAnalysisGUITests;
+			sourceTree = "<group>";
+		};
+		C3D222E8205A34010066E6AB /* DDG */ = {
+			isa = PBXGroup;
+			children = (
+				C3D222EA205A340F0066E6AB /* Elements.cpp */,
+				C3D222E9205A340E0066E6AB /* HEGraph.cpp */,
+				C3D222EC205A34110066E6AB /* ExteriorCalculus.cpp */,
+				C3D222EB205A34100066E6AB /* ModeAnalysis.cpp */,
+			);
+			path = DDG;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -145,6 +181,7 @@
 				TargetAttributes = {
 					C347B88520577E92000232FC = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 					C347B89720577E93000232FC = {
@@ -178,8 +215,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C347B88E20577E93000232FC /* Assets.xcassets in Resources */,
-				C347B89120577E93000232FC /* Main.storyboard in Resources */,
+				C3C1CE63205A72F90064B5D1 /* Assets.xcassets in Resources */,
+				C3C1CE61205A72F00064B5D1 /* Main.storyboard in Resources */,
+				C3C1CE66205A73010064B5D1 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,8 +235,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3C1CE5C205A6D270064B5D1 /* Polygon.swift in Sources */,
+				C3C1CE59205A4ACA0064B5D1 /* AppDelegate.swift in Sources */,
+				C3C1CE57205A49B00064B5D1 /* HEGraph.cpp in Sources */,
+				C3C1CE55205A49B00064B5D1 /* Elements.cpp in Sources */,
+				C3C1CE5E205A6F160064B5D1 /* Primitives.swift in Sources */,
 				C347B88C20577E93000232FC /* ViewController.swift in Sources */,
-				C347B88A20577E93000232FC /* AppDelegate.swift in Sources */,
+				C3C1CE4F205A47040064B5D1 /* ModeAnalysisWrapper.mm in Sources */,
+				C3C1CE58205A49B00064B5D1 /* ModeAnalysis.cpp in Sources */,
+				C3C1CE56205A49B00064B5D1 /* ExteriorCalculus.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,10 +266,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		C347B88F20577E93000232FC /* Main.storyboard */ = {
+		C3C1CE5F205A72F00064B5D1 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C347B89020577E93000232FC /* Base */,
+				C3C1CE60205A72F00064B5D1 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -342,13 +387,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ModeAnalysisGUI/ModeAnalysisGUI.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				HEADER_SEARCH_PATHS = "$( SRCROOT)/../";
 				INFOPLIST_FILE = ModeAnalysisGUI/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = n.i..ModeAnalysisGUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ModeAnalysisGUI/ModeAnalysisGUI-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -357,13 +406,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ModeAnalysisGUI/ModeAnalysisGUI.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				HEADER_SEARCH_PATHS = "$( SRCROOT)/../";
 				INFOPLIST_FILE = ModeAnalysisGUI/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = n.i..ModeAnalysisGUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ModeAnalysisGUI/ModeAnalysisGUI-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
