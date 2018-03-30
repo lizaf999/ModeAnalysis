@@ -18,8 +18,10 @@ appを起動すると表示される画面でPrimitiveTypeを選択します。�
 # Licence
 MITライセンスに準拠します。LICENCE.mdをご覧ください。
 
-# Authors
+# Author
 N-Ishida(vega9)
 
 # References
-離散微分幾何学(Discrete Differential Geometry,DDG)の公式の導出等はKeenan Crane氏のDISCRETE DIFFERENTIAL GEOMETRY: AN APPLIED INTRODUCTION (https://www.cs.cmu.edu/~kmcrane/Projects/DDG/paper.pdf)を大いに参考にしています。
+離散微分幾何学(Discrete Differential Geometry,DDG)の公式の導出等はKeenan Crane氏の[DISCRETE DIFFERENTIAL GEOMETRY: AN APPLIED INTRODUCTION ][1]を大いに参考にしています。
+
+[1]:https://www.cs.cmu.edu/~kmcrane/Projects/DDG/paper.pdf
