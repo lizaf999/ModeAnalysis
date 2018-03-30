@@ -50,6 +50,9 @@ vector<double> ModeAnalysis::getEigenValues()
 
 vector<double> ModeAnalysis::getEigenVector(int ID)
 {
+    if (ID>eigenVectors->cols()) {
+        return vector<double>(isFixed.size(),0);
+    }
     VectorXd eigenVector = eigenVectors->col(eigenVectors->cols()-ID-1);//inverse
     int n_small = eigenVector.size();
     vector<double> vec(n_small,0);
