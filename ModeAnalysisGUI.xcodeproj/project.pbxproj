@@ -70,6 +70,7 @@
 		C3C1CE65205A73010064B5D1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ModeAnalysisGUI/Info.plist; sourceTree = "<group>"; };
 		C3C2D1E92069CA2300F06E0F /* DualContouring3D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DualContouring3D.swift; sourceTree = "<group>"; };
 		C3C2D1EB206DF5C100F06E0F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C3C2D1EC206E1D7600F06E0F /* LICENCE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LICENCE.md; sourceTree = "<group>"; };
 		C3D222E9205A340E0066E6AB /* HEGraph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HEGraph.cpp; sourceTree = "<group>"; };
 		C3D222EA205A340F0066E6AB /* Elements.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Elements.cpp; sourceTree = "<group>"; };
 		C3D222EB205A34100066E6AB /* ModeAnalysis.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ModeAnalysis.cpp; sourceTree = "<group>"; };
@@ -131,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				C3C2D1EB206DF5C100F06E0F /* README.md */,
+				C3C2D1EC206E1D7600F06E0F /* LICENCE.md */,
 				C347B88820577E92000232FC /* ModeAnalysisGUI */,
 				C3C1CE5F205A72F00064B5D1 /* Main.storyboard */,
 				C3C1CE62205A72F90064B5D1 /* Assets.xcassets */,
