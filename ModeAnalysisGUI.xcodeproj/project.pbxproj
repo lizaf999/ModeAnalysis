@@ -17,7 +17,6 @@
 		C3188A4C205CE2FE00C5080F /* shaderFunctions.metal in Sources */ = {isa = PBXBuildFile; fileRef = C3188A43205CE2FD00C5080F /* shaderFunctions.metal */; };
 		C3188A4D205CE2FE00C5080F /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = C3188A44205CE2FD00C5080F /* Shaders.metal */; };
 		C347B88C20577E93000232FC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C347B88B20577E93000232FC /* ViewController.swift */; };
-		C347B89D20577E93000232FC /* ModeAnalysisGUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C347B89C20577E93000232FC /* ModeAnalysisGUITests.swift */; };
 		C3C1CE4F205A47040064B5D1 /* ModeAnalysisWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = C3C1CE4E205A47030064B5D1 /* ModeAnalysisWrapper.mm */; };
 		C3C1CE55205A49B00064B5D1 /* Elements.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C3D222EA205A340F0066E6AB /* Elements.cpp */; };
 		C3C1CE56205A49B00064B5D1 /* ExteriorCalculus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C3D222EC205A34110066E6AB /* ExteriorCalculus.cpp */; };
@@ -56,8 +55,6 @@
 		C347B88920577E92000232FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C347B88B20577E93000232FC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C347B89820577E93000232FC /* ModeAnalysisGUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ModeAnalysisGUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C347B89C20577E93000232FC /* ModeAnalysisGUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeAnalysisGUITests.swift; sourceTree = "<group>"; };
-		C347B89E20577E93000232FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C347B8A72057AEC7000232FC /* ModeAnalysisGUI-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ModeAnalysisGUI-Bridging-Header.h"; sourceTree = "<group>"; };
 		C3C1CE4B205A44D60064B5D1 /* ModeAnalysisWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModeAnalysisWrapper.h; sourceTree = "<group>"; };
 		C3C1CE4E205A47030064B5D1 /* ModeAnalysisWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ModeAnalysisWrapper.mm; sourceTree = "<group>"; };
@@ -138,7 +135,6 @@
 				C3C1CE62205A72F90064B5D1 /* Assets.xcassets */,
 				C3C1CE65205A73010064B5D1 /* Info.plist */,
 				C3C1CE64205A73010064B5D1 /* ModeAnalysisGUI.entitlements */,
-				C347B89B20577E93000232FC /* ModeAnalysisGUITests */,
 				C347B88720577E92000232FC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -165,15 +161,6 @@
 				C3188A35205CDF2300C5080F /* DDG */,
 			);
 			path = ModeAnalysisGUI;
-			sourceTree = "<group>";
-		};
-		C347B89B20577E93000232FC /* ModeAnalysisGUITests */ = {
-			isa = PBXGroup;
-			children = (
-				C347B89C20577E93000232FC /* ModeAnalysisGUITests.swift */,
-				C347B89E20577E93000232FC /* Info.plist */,
-			);
-			path = ModeAnalysisGUITests;
 			sourceTree = "<group>";
 		};
 		C3C2D1E82069CA0200F06E0F /* Model */ = {
@@ -327,7 +314,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C347B89D20577E93000232FC /* ModeAnalysisGUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
