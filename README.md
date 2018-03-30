@@ -16,7 +16,7 @@ GUIを含む全体のビルドはXcodeプロジェクトから行います。C++
 appを起動すると表示される画面でPrimitiveTypeを選択します。計算の負荷が小さいものはParallelogramおよびSphereです。選択後Calc.ボタンを押すと求解が始まります。なお図形によっては頂点数が多いため数分かかることがあります。その後固有値番号に対応するIDとして整数値を入力すると計算結果がアニメーションにより表示されます。
 
 # Licence
-MITライセンスに準拠します。LICENCE.txtをご覧ください。
+MITライセンスに準拠します。LICENCE.mdをご覧ください。
 
 # Authors
 N-Ishida(vega9)
