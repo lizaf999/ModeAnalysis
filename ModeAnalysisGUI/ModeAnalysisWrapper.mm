@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 #import "ModeAnalysisWrapper.h"
-#import "include/ModeAnalysis.h"
+#import "DDG/include/ModeAnalysis.h"
 #import <iostream>
 #import <vector>
 
@@ -16,13 +16,9 @@ using namespace std;
     return self;
 }
 
-
-
--(void)setPallalelogram {
-    (*(ModeAnalysis*)_cppModeAnalysis).setPallalellogram();
-}
-
 -(void)setVerticesAndFaces:(NSArray *)vertices faces:(NSArray*)faces{
+    //極めて効率が悪い実装
+    //NSArray->vectorを要素ごとに行なっている
     vector<ModeAnalysis::xyz> vertices_cpp;
     int vn = (int)[vertices count];
     for (int i=0; i<vn; i++) {
@@ -77,6 +73,32 @@ using namespace std;
     return arr;
 }
 
+-(NSArray*)getNormals:(NSArray *)positions{
+    vector<ModeAnalysis::xyz> vertices_cpp;
+    int vn = (int)[positions count];
+    for (int i=0; i<vn; i++) {
+        NSArray* vertex = (NSArray*)[positions objectAtIndex:i];
+        double x,y,z;
+        x = [[vertex objectAtIndex:0] doubleValue];
+        y = [[vertex objectAtIndex:1] doubleValue];
+        z = [[vertex objectAtIndex:2] doubleValue];
+        
+        
+        ModeAnalysis::xyz v_cpp = {x,y,z};
+        vertices_cpp.push_back(v_cpp);
+    }
+    
+    vector<ModeAnalysis::xyz> normals = (*(ModeAnalysis*)_cppModeAnalysis).getNormal(vertices_cpp);
+    NSMutableArray* ar = [[NSMutableArray alloc] init];
+    for(auto pos:normals){
+        NSMutableArray* pos_ar = [[NSMutableArray alloc] init];
+        [pos_ar addObject:[NSNumber numberWithDouble:pos.x]];
+        [pos_ar addObject:[NSNumber numberWithDouble:pos.y]];
+        [pos_ar addObject:[NSNumber numberWithDouble:pos.z]];
+        [ar addObject:pos_ar];
+    }
+    return ar;
+}
 @end
 
 

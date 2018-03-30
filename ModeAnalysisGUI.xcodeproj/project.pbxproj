@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C3188A45205CE2FD00C5080F /* Mesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3188A3B205CE2FD00C5080F /* Mesh.swift */; };
+		C3188A46205CE2FD00C5080F /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3188A3D205CE2FD00C5080F /* Math.swift */; };
+		C3188A47205CE2FE00C5080F /* UniformState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3188A3E205CE2FD00C5080F /* UniformState.swift */; };
+		C3188A48205CE2FE00C5080F /* RenderableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3188A3F205CE2FD00C5080F /* RenderableObject.swift */; };
+		C3188A49205CE2FE00C5080F /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3188A40205CE2FD00C5080F /* Camera.swift */; };
+		C3188A4A205CE2FE00C5080F /* MeshRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3188A41205CE2FD00C5080F /* MeshRender.swift */; };
+		C3188A4B205CE2FE00C5080F /* Render.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3188A42205CE2FD00C5080F /* Render.swift */; };
+		C3188A4C205CE2FE00C5080F /* shaderFunctions.metal in Sources */ = {isa = PBXBuildFile; fileRef = C3188A43205CE2FD00C5080F /* shaderFunctions.metal */; };
+		C3188A4D205CE2FE00C5080F /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = C3188A44205CE2FD00C5080F /* Shaders.metal */; };
 		C347B88C20577E93000232FC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C347B88B20577E93000232FC /* ViewController.swift */; };
 		C347B89D20577E93000232FC /* ModeAnalysisGUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C347B89C20577E93000232FC /* ModeAnalysisGUITests.swift */; };
 		C3C1CE4F205A47040064B5D1 /* ModeAnalysisWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = C3C1CE4E205A47030064B5D1 /* ModeAnalysisWrapper.mm */; };
@@ -20,6 +29,7 @@
 		C3C1CE61205A72F00064B5D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3C1CE5F205A72F00064B5D1 /* Main.storyboard */; };
 		C3C1CE63205A72F90064B5D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3C1CE62205A72F90064B5D1 /* Assets.xcassets */; };
 		C3C1CE66205A73010064B5D1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3C1CE65205A73010064B5D1 /* Info.plist */; };
+		C3C2D1EA2069CA2300F06E0F /* DualContouring3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C2D1E92069CA2300F06E0F /* DualContouring3D.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +43,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C3188A3B205CE2FD00C5080F /* Mesh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mesh.swift; sourceTree = "<group>"; };
+		C3188A3D205CE2FD00C5080F /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
+		C3188A3E205CE2FD00C5080F /* UniformState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniformState.swift; sourceTree = "<group>"; };
+		C3188A3F205CE2FD00C5080F /* RenderableObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderableObject.swift; sourceTree = "<group>"; };
+		C3188A40205CE2FD00C5080F /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		C3188A41205CE2FD00C5080F /* MeshRender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeshRender.swift; sourceTree = "<group>"; };
+		C3188A42205CE2FD00C5080F /* Render.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Render.swift; sourceTree = "<group>"; };
+		C3188A43205CE2FD00C5080F /* shaderFunctions.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = shaderFunctions.metal; sourceTree = "<group>"; };
+		C3188A44205CE2FD00C5080F /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		C347B88620577E92000232FC /* ModeAnalysisGUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ModeAnalysisGUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C347B88920577E92000232FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C347B88B20577E93000232FC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +68,8 @@
 		C3C1CE62205A72F90064B5D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ModeAnalysisGUI/Assets.xcassets; sourceTree = "<group>"; };
 		C3C1CE64205A73010064B5D1 /* ModeAnalysisGUI.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = ModeAnalysisGUI.entitlements; path = ModeAnalysisGUI/ModeAnalysisGUI.entitlements; sourceTree = "<group>"; };
 		C3C1CE65205A73010064B5D1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ModeAnalysisGUI/Info.plist; sourceTree = "<group>"; };
+		C3C2D1E92069CA2300F06E0F /* DualContouring3D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DualContouring3D.swift; sourceTree = "<group>"; };
+		C3C2D1EB206DF5C100F06E0F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C3D222E9205A340E0066E6AB /* HEGraph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HEGraph.cpp; sourceTree = "<group>"; };
 		C3D222EA205A340F0066E6AB /* Elements.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Elements.cpp; sourceTree = "<group>"; };
 		C3D222EB205A34100066E6AB /* ModeAnalysis.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ModeAnalysis.cpp; sourceTree = "<group>"; };
@@ -73,9 +94,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C3188A35205CDF2300C5080F /* DDG */ = {
+			isa = PBXGroup;
+			children = (
+				C3C1CE54205A47F70064B5D1 /* include */,
+				C3D222E8205A34010066E6AB /* src */,
+			);
+			path = DDG;
+			sourceTree = "<group>";
+		};
+		C3188A3A205CE2FD00C5080F /* MetalRender */ = {
+			isa = PBXGroup;
+			children = (
+				C3188A3B205CE2FD00C5080F /* Mesh.swift */,
+				C3188A3C205CE2FD00C5080F /* RenderSupport */,
+				C3188A41205CE2FD00C5080F /* MeshRender.swift */,
+				C3188A42205CE2FD00C5080F /* Render.swift */,
+				C3188A43205CE2FD00C5080F /* shaderFunctions.metal */,
+				C3188A44205CE2FD00C5080F /* Shaders.metal */,
+			);
+			path = MetalRender;
+			sourceTree = "<group>";
+		};
+		C3188A3C205CE2FD00C5080F /* RenderSupport */ = {
+			isa = PBXGroup;
+			children = (
+				C3188A3D205CE2FD00C5080F /* Math.swift */,
+				C3188A3E205CE2FD00C5080F /* UniformState.swift */,
+				C3188A3F205CE2FD00C5080F /* RenderableObject.swift */,
+				C3188A40205CE2FD00C5080F /* Camera.swift */,
+			);
+			path = RenderSupport;
+			sourceTree = "<group>";
+		};
 		C347B87D20577E92000232FC = {
 			isa = PBXGroup;
 			children = (
+				C3C2D1EB206DF5C100F06E0F /* README.md */,
 				C347B88820577E92000232FC /* ModeAnalysisGUI */,
 				C3C1CE5F205A72F00064B5D1 /* Main.storyboard */,
 				C3C1CE62205A72F90064B5D1 /* Assets.xcassets */,
@@ -100,13 +155,12 @@
 			children = (
 				C347B88920577E92000232FC /* AppDelegate.swift */,
 				C347B88B20577E93000232FC /* ViewController.swift */,
-				C3C1CE5B205A6D270064B5D1 /* Polygon.swift */,
-				C3C1CE5D205A6F160064B5D1 /* Primitives.swift */,
+				C3C2D1E82069CA0200F06E0F /* Model */,
 				C3C1CE4B205A44D60064B5D1 /* ModeAnalysisWrapper.h */,
 				C3C1CE4E205A47030064B5D1 /* ModeAnalysisWrapper.mm */,
 				C347B8A72057AEC7000232FC /* ModeAnalysisGUI-Bridging-Header.h */,
-				C3C1CE54205A47F70064B5D1 /* include */,
-				C3D222E8205A34010066E6AB /* DDG */,
+				C3188A3A205CE2FD00C5080F /* MetalRender */,
+				C3188A35205CDF2300C5080F /* DDG */,
 			);
 			path = ModeAnalysisGUI;
 			sourceTree = "<group>";
@@ -120,7 +174,17 @@
 			path = ModeAnalysisGUITests;
 			sourceTree = "<group>";
 		};
-		C3D222E8205A34010066E6AB /* DDG */ = {
+		C3C2D1E82069CA0200F06E0F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C3C1CE5B205A6D270064B5D1 /* Polygon.swift */,
+				C3C1CE5D205A6F160064B5D1 /* Primitives.swift */,
+				C3C2D1E92069CA2300F06E0F /* DualContouring3D.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C3D222E8205A34010066E6AB /* src */ = {
 			isa = PBXGroup;
 			children = (
 				C3D222EA205A340F0066E6AB /* Elements.cpp */,
@@ -128,7 +192,7 @@
 				C3D222EC205A34110066E6AB /* ExteriorCalculus.cpp */,
 				C3D222EB205A34100066E6AB /* ModeAnalysis.cpp */,
 			);
-			path = DDG;
+			path = src;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,15 +299,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3188A4D205CE2FE00C5080F /* Shaders.metal in Sources */,
 				C3C1CE5C205A6D270064B5D1 /* Polygon.swift in Sources */,
 				C3C1CE59205A4ACA0064B5D1 /* AppDelegate.swift in Sources */,
+				C3188A46205CE2FD00C5080F /* Math.swift in Sources */,
 				C3C1CE57205A49B00064B5D1 /* HEGraph.cpp in Sources */,
 				C3C1CE55205A49B00064B5D1 /* Elements.cpp in Sources */,
+				C3188A45205CE2FD00C5080F /* Mesh.swift in Sources */,
 				C3C1CE5E205A6F160064B5D1 /* Primitives.swift in Sources */,
+				C3188A4B205CE2FE00C5080F /* Render.swift in Sources */,
 				C347B88C20577E93000232FC /* ViewController.swift in Sources */,
 				C3C1CE4F205A47040064B5D1 /* ModeAnalysisWrapper.mm in Sources */,
+				C3188A4C205CE2FE00C5080F /* shaderFunctions.metal in Sources */,
 				C3C1CE58205A49B00064B5D1 /* ModeAnalysis.cpp in Sources */,
+				C3188A4A205CE2FE00C5080F /* MeshRender.swift in Sources */,
+				C3188A47205CE2FE00C5080F /* UniformState.swift in Sources */,
+				C3188A48205CE2FE00C5080F /* RenderableObject.swift in Sources */,
+				C3188A49205CE2FE00C5080F /* Camera.swift in Sources */,
 				C3C1CE56205A49B00064B5D1 /* ExteriorCalculus.cpp in Sources */,
+				C3C2D1EA2069CA2300F06E0F /* DualContouring3D.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
