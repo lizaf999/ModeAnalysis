@@ -1,4 +1,5 @@
 #  ModeAnalysisGUI
+<img width="499" alt="torus" src="https://user-images.githubusercontent.com/37180011/38131573-96bed6f0-3442-11e8-9659-5c6c87f30a87.png">
 
 # Overview
 ポリゴンを2次元多様体と見做してモード解析（固有振動解析、固有値・固有関数計算）を行います。特に球面の場合球面調和関数と類似した結果が得られます。

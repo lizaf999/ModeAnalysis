@@ -14,10 +14,12 @@ class ViewController: NSViewController {
     }
     @IBAction func calcStart(_ sender: Any) {
         calcButton.isEnabled = false
+        primitivePopup.isEnabled = false
         DispatchQueue.global(qos: .default).async {
             self.mode.solveEigen()
             DispatchQueue.main.async {
                 self.idTextField.isEnabled = true
+                self.primitivePopup.isEnabled = true
             }
         }
     }
