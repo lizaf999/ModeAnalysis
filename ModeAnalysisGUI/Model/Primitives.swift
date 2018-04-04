@@ -39,10 +39,7 @@ class Sphere: Polygon {
         vertices.append(double3(0,0,-1))
         
         for i in 1..<col {
-            var th = (1-double_t(i)/double_t(col))*double_t.pi
-            th /= 1-1/double_t(col)
-            th -= double_t.pi/double_t(col)*0.5
-            
+            let th = (1-double_t(i)/double_t(col))*double_t.pi
             
             for j in 0..<row {
                 let phi = double_t(j)/double_t(row)*double_t.pi*2
