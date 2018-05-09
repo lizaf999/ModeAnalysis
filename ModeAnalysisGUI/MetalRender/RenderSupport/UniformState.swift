@@ -55,7 +55,7 @@ class UniformState
         self.eyePos = eyePos
         
         let uniform0 = Uniform3D(time: 0, eyePos: float4(0), rightDiretion: float4(0), rightPos: float4(0), M: matrix_float4x4(0), VP: matrix_float4x4(0))
-        _uniformBuffer = device.makeBuffer(length: MemoryLayout.size(ofValue: uniform0), options:MTLResourceOptions.storageModeManaged)!
+        _uniformBuffer = device.makeBuffer(length: MemoryLayout.size(ofValue: uniform0), options: .storageModeManaged)!
     }
     
     func GetUniformBuffer(ModelMat:inout matrix_float4x4, ViewMat:inout matrix_float4x4) -> MTLBuffer

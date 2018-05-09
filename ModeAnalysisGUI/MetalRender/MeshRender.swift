@@ -138,7 +138,7 @@ public class MeshRender: RenderProtocol {
         self.meshs = meshs
         
         for _ in 0..<Render.bufferCount {
-            frameUniformBuffers += [(device?.makeBuffer(length: MemoryLayout<VertexUniform>.size, options: MTLResourceOptions.cpuCacheModeWriteCombined))!]
+            frameUniformBuffers += [(device?.makeBuffer(length: MemoryLayout<VertexUniform>.size, options: .cpuCacheModeWriteCombined))!]
         }
         
         return true

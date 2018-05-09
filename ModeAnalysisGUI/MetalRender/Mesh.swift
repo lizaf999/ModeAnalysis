@@ -49,8 +49,8 @@ public class Mesh {
         guard let device = Render.current.device else {
             fatalError("Render has not been initialized.")
         }
-        guard let vBuff = device.makeBuffer(bytes: vertexArray, length: MemoryLayout<VertexStructure>.stride*vertexArray.count, options: MTLResourceOptions.cpuCacheModeWriteCombined),
-            let idBuff = device.makeBuffer(bytes: indexArray, length: MemoryLayout<uint32>.size*indexArray.count, options: MTLResourceOptions.cpuCacheModeWriteCombined)
+        guard let vBuff = device.makeBuffer(bytes: vertexArray, length: MemoryLayout<VertexStructure>.stride*vertexArray.count, options: .cpuCacheModeWriteCombined),
+            let idBuff = device.makeBuffer(bytes: indexArray, length: MemoryLayout<uint32>.size*indexArray.count, options: .cpuCacheModeWriteCombined)
             else {
                 fatalError("Buffer could not been assigned.")
         }

@@ -48,7 +48,7 @@ class DualContouring3D{
         let operationQueue = OperationQueue()
         
         //making vertex on edge
-        verticesOnEdges = Array.init(repeating: Array.init(repeating: Array.init(repeating: Array.init(repeating: (false,float3(0)), count: 3), count: n+1), count: n+1), count: n+1)
+        verticesOnEdges = Array(repeating: Array(repeating: Array(repeating: Array(repeating: (false,float3(0)), count: 3), count: n+1), count: n+1), count: n+1)
         operationQueue.isSuspended = true
         for i in 0..<n+1{
             let operation = BlockOperation{
@@ -72,7 +72,7 @@ class DualContouring3D{
         operationQueue.waitUntilAllOperationsAreFinished()
         
         //making dualVertex
-        cells = Array.init(repeating: Array.init(repeating: Array.init(repeating: Vertex(pos: float3(0),norm: float3(0)), count: n), count: n), count: n)
+        cells = Array(repeating: Array(repeating: Array(repeating: Vertex(pos: float3(0),norm: float3(0)), count: n), count: n), count: n)
         operationQueue.isSuspended = true
         for i in 0..<n{
             let operation = BlockOperation{
@@ -97,7 +97,7 @@ class DualContouring3D{
         ////parallel end////
         
         //register vertex IDs
-        verticiesReferense = Array.init(repeating: Array.init(repeating: Array.init(repeating: -1, count: n), count: n), count: n)
+        verticiesReferense = Array(repeating: Array(repeating: Array(repeating: -1, count: n), count: n), count: n)
         var arID:Int = 0
         zloop:for i in 0..<n{
             yloop:for j in 0..<n{

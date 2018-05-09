@@ -84,7 +84,7 @@ class Sphere: Polygon {
         }
         
         normal = vertices.map{return normalize($0)}
-        displacementBases = Array.init(repeating: double3(0), count: vertices.count)
+        displacementBases = Array(repeating: double3(0), count: vertices.count)
     }
 }
 
@@ -137,7 +137,7 @@ class GeodesicDome: Polygon {
         let itr:Int = 5
         for k in 0..<itr {
             let n = vertex.count
-            edge =  Array.init(repeating: Array.init(repeating: 0, count: n), count: n)
+            edge =  Array(repeating: Array(repeating: 0, count: n), count: n)
             
             var vertex_temp = vertex
             for p in vertex {
