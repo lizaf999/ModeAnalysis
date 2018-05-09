@@ -20,11 +20,11 @@ public class Mesh {
         case FrameUniform = 1
         func index() -> Int {return self.rawValue}
     }
-    
+
     let vertexBuffer: MTLBuffer
     let indexBuffer: MTLBuffer
     let indexCount:Int
-    
+
     public init(pos: [double3], normal: [double3] = [], indices: [[Int]], color: [double4] = [], values: [double_t] = []) {
         var vertexArray:[VertexStructure] = []
         var indexArray:[uint32] = []
@@ -38,14 +38,14 @@ public class Mesh {
             let vertexAttrib = VertexStructure(pos: posf, normal: norf, color: colf, value: valf)
             vertexArray.append(vertexAttrib)
         }
-        
+
         indices.forEach { (a) in
               a.forEach({ (b) in
                     indexArray.append(uint32(b))
               })
         }
         indexCount = indexArray.count
-        
+
         guard let device = Render.current.device else {
             fatalError("Render has not been initialized.")
         }
@@ -56,14 +56,14 @@ public class Mesh {
         }
         vertexBuffer = vBuff
         indexBuffer = idBuff
-        
+
         if vertexArray.count-1 != Int(indexArray.max()!) {
             NSLog("vertexcount \(vertexArray.count-1) doesn't match max of indexArray \(String(describing: indexArray.max()))")
         }
     }
 
-    
-    
+
+
     func render(encoder :MTLRenderCommandEncoder) {
         encoder.setVertexBuffer(vertexBuffer, offset: 0, index: Buffer.MeshVertex.index())
         encoder.drawIndexedPrimitives(type: .triangle, indexCount: indexCount, indexType: .uint32, indexBuffer: indexBuffer, indexBufferOffset: 0)
