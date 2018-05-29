@@ -13,9 +13,9 @@ class UniformState
         var  M:matrix_float4x4
         var VP:matrix_float4x4
     }
-    
+
     private var _uniformBuffer:MTLBuffer
-    
+
     //algebra property
     var rightDirection:float3?
     {
@@ -25,10 +25,10 @@ class UniformState
     }
     var rightPos:float4?
     var eyePos:float4?
-    
+
     var perspectiveMat:matrix_float4x4?
-    
-    
+
+
     //time property
     private static var _startDate = NSDate()
     private static var _nowDate = NSDate()
@@ -46,18 +46,18 @@ class UniformState
             return t
         }
     }
-    
+
     init(device:MTLDevice,eyePos:float4, rightDirection:float3, rightPosition:float3)
     {
         self.rightDirection = rightDirection
         let p = rightPosition
         self.rightPos = float4(p.x,p.y,p.z,0)
         self.eyePos = eyePos
-        
+
         let uniform0 = Uniform3D(time: 0, eyePos: float4(0), rightDiretion: float4(0), rightPos: float4(0), M: matrix_float4x4(0), VP: matrix_float4x4(0))
-        _uniformBuffer = device.makeBuffer(length: MemoryLayout.size(ofValue: uniform0), options:MTLResourceOptions.storageModeManaged)!
+        _uniformBuffer = device.makeBuffer(length: MemoryLayout.size(ofValue: uniform0), options: .storageModeManaged)!
     }
-    
+
     func GetUniformBuffer(ModelMat:inout matrix_float4x4, ViewMat:inout matrix_float4x4) -> MTLBuffer
     {
         if perspectiveMat == nil || rightDirection == nil || rightPos == nil || eyePos == nil{
@@ -67,12 +67,12 @@ class UniformState
         let MVP = perspectiveMat! * ViewMat
         let rd = rightDirection!
         var uniform = Uniform3D(time: UniformState.elapsedTime, eyePos: eyePos!, rightDiretion: float4(rd.z,rd.y,rd.z,1), rightPos: rightPos!, M: ModelMat, VP: MVP)
-        
+
         let bufferPointer = _uniformBuffer.contents()
         memcpy(bufferPointer, &uniform, MemoryLayout.size(ofValue: uniform))
-        
+
         return _uniformBuffer//値渡しかも？
     }
-    
-    
+
+
 }

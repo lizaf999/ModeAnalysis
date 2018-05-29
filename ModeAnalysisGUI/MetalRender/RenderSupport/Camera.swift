@@ -4,11 +4,11 @@ import MetalKit
 class Camera
 {
     private var m:float4x4 = matrix_identity_float4x4
-    
+
     private var _needsMatrixUpdate:Bool = true
     private var _center:float3 = float3(0)
     private var _up:float3 = float3(0,1,0)
-    
+
     var position:float3
     {
         get {
@@ -17,7 +17,7 @@ class Camera
             let xz = r*sin(polarPosRTP.y)
             let x  = xz*cos(polarPosRTP.z)
             let z  = xz*sin(polarPosRTP.z)
-            
+
             return float3(x,y,z)
         }
     }
@@ -46,13 +46,13 @@ class Camera
         set { _up = normalize(newValue); _needsMatrixUpdate = true}
         get { return _up}
     }
-    
+
     init(polar:float3, center:float3, up:float3) {
         self.polarPosRTP = polar
         self.center = center
         self.up = up
     }
-    
+
     func setUpDir() {
         let dt:Float = 0.001
         let p0 = position
@@ -61,7 +61,7 @@ class Camera
         let dir:float3 = normalize(p1-p0)
         up = dir
     }
-    
+
     func GetViewMatrix() -> matrix_float4x4
     {
         if _needsMatrixUpdate
@@ -69,8 +69,8 @@ class Camera
             m = lookAt(eye: position, center: center, up: up)
             _needsMatrixUpdate = false
         }
-        
+
         return m
     }
-    
+
 }

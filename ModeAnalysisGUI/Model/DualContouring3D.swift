@@ -21,7 +21,7 @@ class DualContouring3D{
     }
     private var cells:[[[Vertex]]] = [[[]]]
     private var verticesOnEdges:[[[[(Bool,float3)]]]] = [[[[]]]]
-    
+
     init(row N:Int, edgeLength:Float,distance:@escaping (float3)->Float)
     {
         self.n = N
@@ -30,25 +30,25 @@ class DualContouring3D{
             fatalError("N must be >=1")
         }
         dx = edgeLength/Float(N)
-        
+
     }
-    
+
     private func cornerPosition(X:Int, Y:Int, Z:Int) -> float3 {
         return dx*float3(Float(X),Float(Y),Float(Z))-dx*Float(n/2)*float3(1,1,1)
     }
-    
+
     func makePolygonsWithEdges() -> ([Vertex],[[Int]])
     {
         var faces:[[Int]] = [[Int]]()
         var compactVertices:[Vertex] = []
         var verticiesReferense:[[[Int]]] = [[[]]]
         let date = NSDate()
-        
+
         ////parallel start////
         let operationQueue = OperationQueue()
-        
+
         //making vertex on edge
-        verticesOnEdges = Array.init(repeating: Array.init(repeating: Array.init(repeating: Array.init(repeating: (false,float3(0)), count: 3), count: n+1), count: n+1), count: n+1)
+        verticesOnEdges = Array(repeating: Array(repeating: Array(repeating: Array(repeating: (false,float3(0)), count: 3), count: n+1), count: n+1), count: n+1)
         operationQueue.isSuspended = true
         for i in 0..<n+1{
             let operation = BlockOperation{
@@ -57,7 +57,7 @@ class DualContouring3D{
                 }
                 for j in 0..<self.n+1{
                     for k in 0..<self.n+1{
-                        
+
                         let D = [(1,0,0),(0,1,0),(0,0,1)]
                         for m in 0..<D.count  {
                             let d = D[m]
@@ -70,9 +70,9 @@ class DualContouring3D{
         }
         operationQueue.isSuspended = false
         operationQueue.waitUntilAllOperationsAreFinished()
-        
+
         //making dualVertex
-        cells = Array.init(repeating: Array.init(repeating: Array.init(repeating: Vertex(pos: float3(0),norm: float3(0)), count: n), count: n), count: n)
+        cells = Array(repeating: Array(repeating: Array(repeating: Vertex(pos: float3(0),norm: float3(0)), count: n), count: n), count: n)
         operationQueue.isSuspended = true
         for i in 0..<n{
             let operation = BlockOperation{
@@ -81,11 +81,11 @@ class DualContouring3D{
                 }
                 for j in 0..<self.n{
                     for k in 0..<self.n{
-                        
+
                         let p = self.makeDualVertexInCell(X: k, Y: j, Z: i)
                         if(p.x==0&&p.y==0&&p.z==0){continue}
                         let v = Vertex(pos: p, norm: normalize(self.grad(pos: p)))
-                        
+
                         self.cells[i][j][k] = v
                     }
                 }
@@ -95,9 +95,9 @@ class DualContouring3D{
         operationQueue.isSuspended = false
         operationQueue.waitUntilAllOperationsAreFinished()
         ////parallel end////
-        
+
         //register vertex IDs
-        verticiesReferense = Array.init(repeating: Array.init(repeating: Array.init(repeating: -1, count: n), count: n), count: n)
+        verticiesReferense = Array(repeating: Array(repeating: Array(repeating: -1, count: n), count: n), count: n)
         var arID:Int = 0
         zloop:for i in 0..<n{
             yloop:for j in 0..<n{
@@ -110,7 +110,7 @@ class DualContouring3D{
                 }
             }
         }
-        
+
         //register triangles
         zloop:for i in 0..<n{
             if i%10==9{
@@ -118,19 +118,19 @@ class DualContouring3D{
             }
             yloop:for j in 0..<n{
                 xloop:for k in 0..<n{
-                    
+
                     let coords = [[k+1,j,i],[k,j+1,i],[k,j,i+1]]
                     for m in 0...2{
                         let id = coords[m]
                         if id[m] >= n{ continue }//境界対策
-                        
+
                         if getVertexOnEdge(X0: k, Y0: j, Z0: i, X1: id[0], Y1: id[1], Z1: id[2]).0 {
                             var dualVertices:[Int] = []
                             for d in directions{
                                 let v = verticiesReferense[i+d.2][j+d.1][k+d.0]
                                 dualVertices.append(v)
                             }
-                            
+
                             switch m{
                             case 0:
                                 let dv1 = [dualVertices[2],dualVertices[3],dualVertices[0]]
@@ -162,14 +162,14 @@ class DualContouring3D{
         print("faces count",faces.count)
         return (compactVertices,faces)
     }
-    
-    
-    
+
+
+
     private func checkCrossingWithEdges(X0:Int,Y0:Int,Z0:Int,X1:Int,Y1:Int,Z1:Int) -> (Bool,float3)
     {
         let p0 = cornerPosition(X: X0, Y: Y0, Z: Z0)
         let d0 = distance(p0)
-        
+
         if X1>=n || Y1>=n || Z1>=n {
             return (false,float3(0,0,0))
         }
@@ -183,7 +183,7 @@ class DualContouring3D{
             return (true,crossPos)
         }
     }
-    
+
     private func getVertexOnEdge(X0:Int,Y0:Int,Z0:Int,X1:Int,Y1:Int,Z1:Int) -> (Bool,float3)
     {
         if X0 != X1 {
@@ -197,7 +197,7 @@ class DualContouring3D{
             return verticesOnEdges[Z ][Y0][X0][2]
         }
     }
-    
+
     private func makeDualVertexInCell(X:Int, Y:Int, Z:Int) -> float3
     {
         var centroid = float3(0,0,0)
@@ -215,10 +215,10 @@ class DualContouring3D{
         if numEdges > 0{
             centroid /= Float(numEdges)
         }
-        
+
         return centroid
     }
-    
+
     private func grad(pos:float3) -> float3
     {
         let eps:Float = 0.0001
