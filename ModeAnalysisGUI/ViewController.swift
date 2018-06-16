@@ -27,7 +27,7 @@ class ViewController: NSViewController {
         didSet{
             primitivePopup.removeAllItems()
             primitivePopup.addItem(withTitle: "PrimitiveType")
-            
+
             for type in PrimitiveType.types {
                 let menu = NSMenuItem(title: type, action: #selector(typeSelected(item:)), keyEquivalent: "")
                 menu.target = self
@@ -35,33 +35,33 @@ class ViewController: NSViewController {
             }
         }
     }
-    
-    
+
+
     //for camera
     var preMouse:NSPoint = NSPoint()
     //model
     var mode:Polygon! = nil
-    
+
     enum PrimitiveType:String {
         case Parallelogram = "Parallelogram"
         case Sphere = "Sphere"
         case Torus = "Torus"
         case GeodesicDome = "GeodesicDome"
         case SphereImplicit = "SphereImplict"
-        
+
         static let types:[String] = [Parallelogram,Sphere,Torus,GeodesicDome,SphereImplicit].map{$0.rawValue}
     }
-    
-    
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         idTextField.isEnabled = false
         calcButton.isEnabled = false
-        
+
         defaultSetup(mtkview)
     }
-    
+
     func drawPrimitive(){
         let obj = MeshRender()
         let mesh = Mesh(pos: mode.vertices, normal: mode.normal, indices: mode.faces)
@@ -69,11 +69,11 @@ class ViewController: NSViewController {
             NSLog("Mesh could not be created.")
             return
         }
-        
+
         removeAllRenderTarget()
         addRenderTargets(target: obj)
     }
-    
+
     func drawDisplacedVertices(ID:Int){
         //FIXME: 上限ギリギリのIDが入ってくるとgetEigenVectorで落ちる
         if mode.vertices.isEmpty||ID<0||ID>=mode.vertices.count {
@@ -81,24 +81,24 @@ class ViewController: NSViewController {
         }
         //let pos:[double3] = mode.getDisplacedVertices(ID: ID)
         let pos:[double3] = mode.vertices
-        
+
         let obj = MeshRender()
         let mesh = Mesh(pos: pos, normal: mode.getDisplacedNormal(pos: pos), indices: mode.faces, values: mode.getEigenVector(ID: ID))
         if !obj.setup(.Diffuse, meshs: [mesh]){
             NSLog("Mesh could not be created.")
             return
         }
-        
+
         removeAllRenderTarget()
         addRenderTargets(target: obj)
     }
-    
+
     @objc func typeSelected(item:NSMenuItem){
         if primitivePopup.title != item.title {
             calcButton.isEnabled = true
         }
         primitivePopup.title = item.title
-        
+
         if let type = PrimitiveType(rawValue: item.title) {
             switch type{
             case .Parallelogram:
@@ -112,7 +112,7 @@ class ViewController: NSViewController {
             case .SphereImplicit:
                 mode = SphereImplicit()
             }
-            
+
             mode.setMesh()
             drawPrimitive()
         }
@@ -130,13 +130,13 @@ class ViewController: NSViewController {
         Render.current.camera.polarPosRTP += float3(0,Float(dT/self.view.frame.width),Float(-dP/self.view.frame.height))*5
         Render.current.camera.setUpDir()
         preMouse = p
-        
+
     }
     override func magnify(with event: NSEvent) {
         Render.current.camera.polarPosRTP.x += -Float(event.magnification*30)
     }
 
-    
-    
+
+
 }
 

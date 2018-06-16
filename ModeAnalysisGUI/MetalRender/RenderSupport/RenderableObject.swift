@@ -6,10 +6,10 @@ class RenderableObject
     let mesh        : MTLBuffer?
     let indexBuffer : MTLBuffer?
     let texture     : MTLTexture?
-    
-    
+
+
     var count : Int
-    
+
     private var _m:matrix_float4x4 = matrix_identity_float4x4
     private var _needsMatrixUpdate:Bool = true
     var scale   :float3{
@@ -27,21 +27,21 @@ class RenderableObject
             _needsMatrixUpdate = true
         }
     }
-    
-    
+
+
     init(mesh:MTLBuffer, idx:MTLBuffer?, count:Int, tex:MTLTexture?)
     {
         self.mesh        = mesh
         self.indexBuffer = idx
         self.texture     = tex
         self.count       = count
-        
+
         self.scale    = float3(1)
         self.position = float3(0)
         self.rotation = float3(0)
-        
+
     }
-    
+
     //LocalToWorld
     func ModelMatrix() -> matrix_float4x4
     {
@@ -53,12 +53,12 @@ class RenderableObject
             let zrot = rotateMat(angleDeg: rotation.z, axis: float3(0,0,1))
             let tf   = translate(x: position.x, y: position.y, z: position.z)
             _m = tf * zrot*yrot*xrot * scaleMat
-            
+
             _needsMatrixUpdate = false
         }
         return _m
     }
-    
+
     func Draw(encoder:MTLRenderCommandEncoder)
     {
         if indexBuffer != nil
