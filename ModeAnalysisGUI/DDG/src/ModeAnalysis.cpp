@@ -117,6 +117,27 @@ vector<ModeAnalysis::xyz> ModeAnalysis::getNormal(vector<ModeAnalysis::xyz> posi
     return normals_xyz;
 }
 
+vector<ModeAnalysis::xyz> ModeAnalysis::projectPosOnEigenVec(int ID)
+{
+  int n = vertices.size();
+  vector<double> eigenVec = getEigenVector(ID);
+  Vector3d mht = Vector3d::Zero();
+  double norm = 0;
+  for (int i=0; i<n; i++) {
+    mht += vertices[i]*eigenVec[i];
+    norm += eigenVec[i]*eigenVec[i];
+  }
+
+  vector<xyz> projected;
+  for (int i=0; i<n; i++) {
+    Vector3d p = mht*eigenVec[i]/norm;
+    xyz p_xyz = {p.x(),p.y(),p.z()};
+    projected.push_back(p_xyz);
+  }
+
+  return projected;
+}
+
 
 
 
