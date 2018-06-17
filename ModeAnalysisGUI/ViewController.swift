@@ -12,7 +12,8 @@ class ViewController: NSViewController {
   @IBAction func idEntered(_ sender: NSTextField) {
     if let id = Int(sender.stringValue) {
       sender.isEnabled = false
-      drawDisplacedVertices(ID: id)
+      //drawDisplacedVertices(ID: id)
+      drawProjectedOnEigenVec(ID: id)
       sender.isEnabled = true
     }
   }
@@ -92,6 +93,23 @@ class ViewController: NSViewController {
     //let pos:[double3] = mode.getDisplacedVertices(ID: ID)
     let pos:[double3] = mode.vertices
 
+    let obj = MeshRender()
+    let mesh = Mesh(pos: pos, normal: mode.getDisplacedNormal(pos: pos), indices: mode.faces, values: mode.getEigenVector(ID: ID))
+    if !obj.setup(.Diffuse, meshs: [mesh]){
+      NSLog("Mesh could not be created.")
+      return
+    }
+
+    removeAllRenderTarget()
+    addRenderTargets(target: obj)
+  }
+
+  func drawProjectedOnEigenVec(ID:Int) {
+    if mode.vertices.isEmpty||ID<0||ID>=mode.vertices.count {
+      return
+    }
+    let pos:[double3] = mode.getVerticesProjectedOn(ID: ID)
+    
     let obj = MeshRender()
     let mesh = Mesh(pos: pos, normal: mode.getDisplacedNormal(pos: pos), indices: mode.faces, values: mode.getEigenVector(ID: ID))
     if !obj.setup(.Diffuse, meshs: [mesh]){

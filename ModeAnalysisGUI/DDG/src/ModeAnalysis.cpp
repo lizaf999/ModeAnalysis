@@ -127,13 +127,34 @@ vector<ModeAnalysis::xyz> ModeAnalysis::projectPosOnEigenVec(int ID)
     mht += vertices[i]*eigenVec[i];
     norm += eigenVec[i]*eigenVec[i];
   }
+  cout << mht << endl;
+  cout << norm <<endl;
 
   vector<xyz> projected;
   for (int i=0; i<n; i++) {
     Vector3d p = mht*eigenVec[i]/norm;
+    cout << p.x() << " " << p.y() << " " << p.z() <<endl;
     xyz p_xyz = {p.x(),p.y(),p.z()};
     projected.push_back(p_xyz);
   }
+
+
+  for (int j=ID-1; j>=0; j--) {
+    eigenVec = getEigenVector(j);
+    mht = Vector3d::Zero();
+    norm = 0;
+    for (int i=0; i<n; i++) {
+      mht += vertices[i]*eigenVec[i];
+      norm += eigenVec[i]*eigenVec[i];
+    }
+    for (int i=0; i<n; i++) {
+      Vector3d p = mht*eigenVec[i]/norm;
+      projected[i].x += p.x();
+      projected[i].y += p.y();
+      projected[i].z += p.z();
+    }
+  }
+
 
   return projected;
 }
