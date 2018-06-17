@@ -111,7 +111,7 @@ class ViewController: NSViewController {
     let pos:[double3] = mode.getVerticesProjectedOn(ID: ID)
     
     let obj = MeshRender()
-    let mesh = Mesh(pos: pos, normal: mode.getDisplacedNormal(pos: pos), indices: mode.faces, values: mode.getEigenVector(ID: ID))
+    let mesh = Mesh(pos: pos, normal: mode.getDisplacedNormal(pos: pos), indices: mode.faces)
     if !obj.setup(.Diffuse, meshs: [mesh]){
       NSLog("Mesh could not be created.")
       return
