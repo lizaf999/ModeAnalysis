@@ -45,7 +45,7 @@ class ViewController: NSViewController {
   @IBOutlet weak var primitivePopup: NSPopUpButton!{
     didSet{
       primitivePopup.removeAllItems()
-      primitivePopup.addItem(withTitle: "Select PrimitiveType")
+      primitivePopup.addItem(withTitle: "PrimitiveType")
 
       for type in PrimitiveType.types {
         let menu = NSMenuItem(title: type, action: #selector(typeSelected(item:)), keyEquivalent: "")
@@ -58,7 +58,6 @@ class ViewController: NSViewController {
   @IBOutlet weak var drawModePopup: NSPopUpButton!{
     didSet{
       drawModePopup.removeAllItems()
-      drawModePopup.addItem(withTitle: "Select DrawMode")
 
       for mode in DrawMode.modes {
         let menu = NSMenuItem(title: mode, action: nil, keyEquivalent: "")

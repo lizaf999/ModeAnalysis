@@ -167,7 +167,7 @@ vector<ModeAnalysis::xyz> ModeAnalysis::projectPosOnEigenVec(int ID)
       absMHT[i] = make_pair(lg, i);
     }
     sort(absMHT.begin(), absMHT.end(), greater<pair<double, int>>());
-    for (int i=0; i<100; i++) {
+    for (int i=0; i<20; i++) {
       cout << absMHT[i].first << " " << absMHT[i].second << endl;
     }
   }
