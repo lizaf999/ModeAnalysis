@@ -12,8 +12,18 @@ class ViewController: NSViewController {
   @IBAction func idEntered(_ sender: NSTextField) {
     if let id = Int(sender.stringValue) {
       sender.isEnabled = false
-      //drawDisplacedVertices(ID: id)
-      drawProjectedOnEigenVec(ID: id)
+
+      if let mode = DrawMode(rawValue: drawModePopup.titleOfSelectedItem!) {
+        switch mode {
+        case .EigenVector:
+          drawDisplacedVertices(ID: id)
+        case .SeriesExpansion:
+          drawProjectedOnEigenVec(ID: id)
+        }
+      }else{
+        print("Invalid drawMode")
+      }
+
       sender.isEnabled = true
     }
   }
@@ -35,12 +45,25 @@ class ViewController: NSViewController {
   @IBOutlet weak var primitivePopup: NSPopUpButton!{
     didSet{
       primitivePopup.removeAllItems()
-      primitivePopup.addItem(withTitle: "PrimitiveType")
+      primitivePopup.addItem(withTitle: "Select PrimitiveType")
 
       for type in PrimitiveType.types {
         let menu = NSMenuItem(title: type, action: #selector(typeSelected(item:)), keyEquivalent: "")
         menu.target = self
         primitivePopup.menu?.addItem(menu)
+      }
+    }
+  }
+
+  @IBOutlet weak var drawModePopup: NSPopUpButton!{
+    didSet{
+      drawModePopup.removeAllItems()
+      drawModePopup.addItem(withTitle: "Select DrawMode")
+
+      for mode in DrawMode.modes {
+        let menu = NSMenuItem(title: mode, action: nil, keyEquivalent: "")
+        menu.target = self
+        drawModePopup.menu?.addItem(menu)
       }
     }
   }
@@ -59,6 +82,13 @@ class ViewController: NSViewController {
     case SphereImplicit = "SphereImplict"
 
     static let types:[String] = [Parallelogram,Sphere,Torus,GeodesicDome,SphereImplicit].map{$0.rawValue}
+  }
+
+  enum DrawMode:String {
+    case EigenVector = "EigenVector"
+    case SeriesExpansion = "SeriesExpansion"
+
+    static let modes:[String] = [EigenVector,SeriesExpansion].map{$0.rawValue}
   }
 
 

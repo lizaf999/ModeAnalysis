@@ -3,6 +3,8 @@
 #include "../include/Eigen/Dense"
 #include <vector>
 #include <iostream>
+#include <utility>
+#include <algorithm>
 
 using namespace std;
 using namespace Eigen;
@@ -119,7 +121,10 @@ vector<ModeAnalysis::xyz> ModeAnalysis::getNormal(vector<ModeAnalysis::xyz> posi
 
 vector<ModeAnalysis::xyz> ModeAnalysis::projectPosOnEigenVec(int ID)
 {
-  int n = vertices.size();
+  int n = eigenValues->size();
+  if (ID>=n) {
+    return vector<xyz>(vertices.size(),xyz({0,0,0}));
+  }
   vector<double> eigenVec = getEigenVector(ID);
   Vector3d mht = Vector3d::Zero();
   double norm = 0;
@@ -146,6 +151,28 @@ vector<ModeAnalysis::xyz> ModeAnalysis::projectPosOnEigenVec(int ID)
       projected[i].z += p.z();
     }
   }
+
+  static vector<pair<double, int>> absMHT;
+  if (absMHT.size() != eigenValues->size()) {
+    absMHT = vector<pair<double, int>>(n,make_pair(0, 0));
+    for (int i=0; i<n; i++) {
+      eigenVec = getEigenVector(i);
+      mht = Vector3d::Zero();
+      norm = 0;
+      for (int j=0; j<n; j++) {
+        mht += vertices[j]*eigenVec[j];
+        norm += eigenVec[j]*eigenVec[j];
+      }
+      double lg = mht.norm();
+      absMHT[i] = make_pair(lg, i);
+    }
+    sort(absMHT.begin(), absMHT.end(), greater<pair<double, int>>());
+    for (int i=0; i<100; i++) {
+      cout << absMHT[i].first << " " << absMHT[i].second << endl;
+    }
+  }
+
+
 
 
   return projected;
