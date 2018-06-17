@@ -154,7 +154,7 @@ public class MeshRender: RenderProtocol {
         let mat = render.camera.GetViewMatrix() * modelMatrix
         uni.projectionView = render.projevtionMatrix * mat
         uni.normal = mat.inverse.transpose
-        uni.time = UniformState.elapsedTime
+        uni.time = UniformState.controlableTime
         p.pointee = uni
     }
 
