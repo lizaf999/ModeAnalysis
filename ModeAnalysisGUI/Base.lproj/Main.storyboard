@@ -746,9 +746,9 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2bN-U7-3PL">
-                                <rect key="frame" x="547" y="313" width="83" height="18"/>
+                                <rect key="frame" x="547" y="313" width="81" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Animation" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="e6O-9T-Wt2">
+                                <buttonCell key="cell" type="check" title="animation" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="e6O-9T-Wt2">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
