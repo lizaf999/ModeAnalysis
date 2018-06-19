@@ -33,7 +33,7 @@ class Polygon: NSObject {
     let date = Date()
     modeAnalysis.solveEigenValueProblem()
     let t = Date().timeIntervalSince(date)
-    print("elapsed time \(Double(t))")
+    print(String(format: "elapsed time %.2fsec", arguments: [float_t(t)]))
   }
 
   final func getDisplacedVertices(ID:Int) ->[double3] {

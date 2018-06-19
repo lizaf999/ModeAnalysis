@@ -1,10 +1,9 @@
 #include "../include/ModeAnalysis.h"
 #include "../include/ExteriorCalculus.h"
 #include "../include/Eigen/Dense"
+#include "../include/Eigen/SparseCore"
 #include <vector>
 #include <iostream>
-#include <utility>
-#include <algorithm>
 
 using namespace std;
 using namespace Eigen;
@@ -19,24 +18,26 @@ void ModeAnalysis::setVerticesandFaces(vector<ModeAnalysis::xyz> vertices,vector
 
 void ModeAnalysis::solveEigenProblem()
 {   
-    graph = new HEGraph();
-    MatrixXd* matrix = new MatrixXd();
-    MatrixXd* matrix_small = new MatrixXd();
-    
-    graph->setElements(vertices,faces);
-    isFixed = detectBoundary(graph);
+  graph = new HEGraph();
+  SparseMatrix<double>* matrix;
+  SparseMatrix<double>* matrix_small;
 
-    matrix = getLaplacian0form(isFixed,graph);
-    convert0formToGenenalized3form(matrix,isFixed,graph);
-    
-    matrix_small = reshapeForModeAnalysis(matrix,isFixed);
+  graph->setElements(vertices,faces);
+  isFixed = detectBoundary(graph);
+
+  matrix = getLaplacian0form(isFixed,graph);
+  convert0formToGenenalized3form(matrix,isFixed,graph);
+
+  matrix_small = reshapeForModeAnalysis(matrix,isFixed);
+  if (matrix!=matrix_small) {
     delete(matrix);
+  }
 
-    MatrixXd* vecs = new MatrixXd();
-    eigenValues = new VectorXd();
-    calcEigenValueandVector(matrix_small,eigenValues,vecs);
-    
-    eigenVectors = getGeneralizedEigenVectors(vecs,isFixed,graph);
+  MatrixXd* vecs = new MatrixXd();
+  eigenValues = new VectorXd();
+  calcEigenValueandVector(matrix_small,eigenValues,vecs);
+
+  eigenVectors = getGeneralizedEigenVectors(vecs,isFixed,graph);
 
 }
 
@@ -52,21 +53,21 @@ vector<double> ModeAnalysis::getEigenValues()
 
 vector<double> ModeAnalysis::getEigenVector(int ID)
 {
-    if (ID>eigenVectors->cols()) {
-        return vector<double>(isFixed.size(),0);
-    }
-    VectorXd eigenVector = eigenVectors->col(eigenVectors->cols()-ID-1);//inverse
-    int n_small = eigenVector.size();
-    vector<double> vec(n_small,0);
-    double maxi=0;
-    for(int i=0;i<n_small;i++){
-        vec[i] = eigenVector(i);
-        if(abs(vec[i])>maxi) maxi = abs(vec[i]);
-    }
-    if(maxi==0){
-        cout << "0 vector" << endl;
-        maxi=1;
-    }
+  if (ID>=eigenVectors->cols()) {
+    return vector<double>(isFixed.size(),0);
+  }
+  VectorXd eigenVector = eigenVectors->col(ID);
+  int n_small = eigenVector.size();
+  vector<double> vec(n_small,0);
+  double maxi=0;
+  for(int i=0;i<n_small;i++){
+    vec[i] = eigenVector(i);
+    if(abs(vec[i])>maxi) maxi = abs(vec[i]);
+  }
+  if(maxi==0){
+    cout << "0 vector" << endl;
+    maxi=1;
+  }
 
     int n = isFixed.size();
     vector<double> fullvec(n,0);
@@ -121,8 +122,9 @@ vector<ModeAnalysis::xyz> ModeAnalysis::getNormal(vector<ModeAnalysis::xyz> posi
 
 vector<ModeAnalysis::xyz> ModeAnalysis::projectPosOnEigenVec(int ID)
 {
-  int n = eigenValues->size();
-  if (ID>=n) {
+  int n = vertices.size();
+  int nVal = eigenValues->size();
+  if (ID>=nVal) {
     return vector<xyz>(vertices.size(),xyz({0,0,0}));
   }
   vector<double> eigenVec = getEigenVector(ID);
@@ -154,8 +156,8 @@ vector<ModeAnalysis::xyz> ModeAnalysis::projectPosOnEigenVec(int ID)
 
   static vector<pair<double, int>> absMHT;
   if (absMHT.size() != eigenValues->size()) {
-    absMHT = vector<pair<double, int>>(n,make_pair(0, 0));
-    for (int i=0; i<n; i++) {
+    absMHT = vector<pair<double, int>>(nVal,make_pair(0, 0));
+    for (int i=0; i<nVal; i++) {
       eigenVec = getEigenVector(i);
       mht = Vector3d::Zero();
       norm = 0;

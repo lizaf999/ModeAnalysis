@@ -1,37 +1,45 @@
 #include <iostream>
 #include "../include/Eigen/Core"
 #include "../include/Eigen/Dense"
+#include "../include/Eigen/SparseCore"
 #include "../include/HalfEdge.h"
+#include "../include/Spectra/SymEigsSolver.h"
+#include "../include/Spectra/MatOp/SparseSymMatProd.h"
 #include <vector>
 
 using namespace Eigen;
+using namespace Spectra;
 using namespace std;
 
-MatrixXd* getLaplacian0form(vector<bool> isFixed,HEGraph* graph)
-{   
-    cout << "getLaplacian0form start.";
-    int n = graph->vertices.size();
+SparseMatrix<double>* getLaplacian0form(vector<bool> isFixed,HEGraph* graph)
+{
+  cout << "getLaplacian0form start.";
+  int n = graph->vertices.size();
 
-    MatrixXd* matrix = new MatrixXd();
-    *matrix = MatrixXd::Zero(n,n);
+  SparseMatrix<double>* M = new SparseMatrix<double>(n,n);
+  M->reserve(6*n);
+  for(auto vertex: graph->vertices){
+    int id = vertex->ID;
+    if(isFixed[id]){
+      M->insert(id, id) = 1;
+    }else{
+      double acc_cot = 0;
+      for(auto edge: vertex->flows){
+        double cot = edge->cotanSum();
+        acc_cot += cot;
 
-    for(auto vertex: graph->vertices){
-        int id = vertex->ID;
-        if(isFixed[id]){
-            (*matrix)(id,id) = 1;
-        }else{
-            for(auto edge: vertex->flows){
-                double cot = edge->cotanSum();
-                (*matrix)(id,id) += -cot;
-
-                int nextID = edge->next->vertex->ID;
-                if(!isFixed[nextID]){(*matrix)(id,nextID) += cot;}
-                else{}
-            }
-        }
+        int nextID = edge->next->vertex->ID;
+        if(!isFixed[nextID]){M->insert(id,nextID) = cot;}//+=じゃなくても大丈夫か
+        else{}
+      }
+      M->insert(id, id) = -acc_cot;
     }
-    cout << " finished." << endl;
-    return matrix;
+  }
+  cout << " finished." << endl;
+
+
+
+  return M;
 }
 
 vector<bool> detectBoundary(HEGraph* graph)
@@ -43,102 +51,114 @@ vector<bool> detectBoundary(HEGraph* graph)
     bool noBoundary = true;
     for(auto vertex: graph->vertices){
     for(auto edge: vertex->flows){
-        if(edge->pair==NULL){
-            isFixed[edge->vertex->ID] = true;
-            isFixed[edge->next->vertex->ID] = true;
-            noBoundary = false;
-        }
+      if(edge->pair==NULL){
+        isFixed[edge->vertex->ID] = true;
+        isFixed[edge->next->vertex->ID] = true;
+        noBoundary = false;
+      }
     }
-    }
-    if(noBoundary) cout << "No Boundary was detected. ";
-    cout << "finished." << endl;
-    return isFixed;
+  }
+  if(noBoundary) cout << "No Boundary was detected. ";
+  cout << "finished." << endl;
+  return isFixed;
 }
 
-void convert0formToGenenalized3form(MatrixXd* matrix,vector<bool> isFixed,HEGraph* graph)
+void convert0formToGenenalized3form(SparseMatrix<double>* matrix,vector<bool> isFixed,HEGraph* graph)
 {
-    cout<< "convert0formToGenenalized3form start.";
-    int n = graph->vertices.size();
-    vector<double> dualArea(n,1);
-    for(int i=0;i<n;i++){
-        dualArea[i] = isFixed[i] ? 1:graph->vertices[i]->dualArea();
-        if(dualArea[i]<=0){
-            cout<<"invalid area"<<endl;
-            assert(dualArea[i]>0);
-        }
+  cout<< "convert0formToGenenalized3form start.";
+  int n = graph->vertices.size();
+  vector<double> dualArea(n,1);
+  for(int i=0;i<n;i++){
+    dualArea[i] = isFixed[i] ? 1:graph->vertices[i]->dualArea();
+    if(dualArea[i]<=0){
+      cout<<"invalid area"<<endl;
+      assert(dualArea[i]>0);
     }
-    for(int i=0;i<n;i++){
-    for(int j=0;j<n;j++){
-        (*matrix)(i,j) /= sqrt(dualArea[i]*dualArea[j]);
+  }
+
+  int nOuter = matrix->outerSize();
+  for (int i=0; i<nOuter; i++) {
+    for (SparseMatrix<double>::InnerIterator it(*matrix,i); it; ++it) {
+      int row = it.row();
+      int col = it.col();
+      matrix->coeffRef(row, col) /= sqrt(dualArea[row]*dualArea[col]);
     }
-    }
-    cout << " finished." << endl;
+  }
+
+  cout << " finished." << endl;
 }
 
-Eigen::MatrixXd* reshapeForModeAnalysis(Eigen::MatrixXd* matrix,vector<bool> isFixed)
+SparseMatrix<double>* reshapeForModeAnalysis(SparseMatrix<double>* matrix,vector<bool> isFixed)
 {
-    cout << "reshapeForModeAnalysis start.";
-    int n = 0;
-    for(int i=0;i<isFixed.size();i++){
-        if(!isFixed[i]) n++;
-    }
-    
-    MatrixXd* matrix_tar = new MatrixXd();
-    *matrix_tar = MatrixXd::Zero(n,n);
-    int col = 0;
-    for(int i=0;i<matrix->cols();i++){//col?
-        if(!isFixed[i]){
-            for(int j=0;j<matrix->rows();j++){
-                int newID = j;
-                if (isFixed[newID]) {
-                    continue;
-                }
-                for(int k=0;k<j;k++){
-                    if(isFixed[k]) newID--;
-                }
-                (*matrix_tar)(col,newID) = (*matrix)(i,j);
-            }
-            col++;
+  cout << "reshapeForModeAnalysis start.";
+  int n = 0;
+  for(int i=0;i<isFixed.size();i++){
+    if(!isFixed[i]) n++;
+  }
+
+  if (n==matrix->cols()){
+    cout << "No chages. finished." << endl;
+    return matrix;
+  }
+
+  SparseMatrix<double>* matrix_tar = new SparseMatrix<double>(n,n);
+  matrix_tar->reserve(6*n);
+  int col = 0;
+  for(int i=0;i<matrix->cols();i++){
+    if(!isFixed[i]){
+      for(int j=0;j<matrix->rows();j++){
+        int newID = j;
+        if (isFixed[newID]) {
+          continue;
         }
+        for(int k=0;k<j;k++){
+          if(isFixed[k]) newID--;
+        }
+        matrix_tar->insert(col, newID) = matrix->coeffRef(i, j);//右辺の行列が密行列になるかも
+      }
+      col++;
     }
-    cout << " finished." << endl;
-    return matrix_tar;
+  }
+  cout << " finished." << endl;
+  return matrix_tar;
 }
 
-void calcEigenValueandVector(MatrixXd* matrix,VectorXd* eigenValues,MatrixXd* eigenVectors)
+void calcEigenValueandVector(SparseMatrix<double>* matrix,VectorXd* eigenValues,MatrixXd* eigenVectors)
 {
-    cout << "calcEigenValuesAndVector start."<<endl;
-    SelfAdjointEigenSolver<MatrixXd> es(*matrix);
-    if(es.info() != Success){
-        cout << "failed during EigenSolver" << endl;
-        return;
-    }else{
-        *eigenValues  = es.eigenvalues();
-        *eigenVectors = es.eigenvectors();
-    }
-    cout << "eigen values and eigen vectors were succeessfully gained." << endl;
+  cout << "calcEigenValuesAndVectors start."<<endl;
+
+  SparseSymMatProd<double> op(*matrix);
+  SymEigsSolver<double, SMALLEST_MAGN, SparseSymMatProd<double>> eigs(&op, 100, 200);
+  eigs.init();
+  eigs.compute();
+  if (eigs.info() == SUCCESSFUL) {
+    *eigenValues = eigs.eigenvalues();
+    *eigenVectors = eigs.eigenvectors();
+  }
+  cout << "eigen values and eigen vectors were succeessfully gained." << endl;
 }
 
 Eigen::MatrixXd* getGeneralizedEigenVectors(MatrixXd* eigenVectors, vector<bool> isFixed,HEGraph* graph)
 {
-    int n = eigenVectors->rows();
-    VectorXd dualArea(n);
-    MatrixXd* matrix = new MatrixXd();
-    *matrix = MatrixXd::Zero(n,n);
+  int nRow = eigenVectors->rows();
+  int nCol = eigenVectors->cols();
+  VectorXd dualArea(nRow);
+  MatrixXd* matrix = new MatrixXd();
+  *matrix = MatrixXd::Zero(nRow,nCol);
 
-    int k=0;
-    for(int i=0;i<graph->vertices.size();i++){
-        if(!isFixed[i]){
-            dualArea(k) = graph->vertices[i]->dualArea();
-            k++;    
-        }
+  int k=0;
+  for(int i=0;i<graph->vertices.size();i++){
+    if(!isFixed[i]){
+      dualArea(k) = graph->vertices[i]->dualArea();
+      k++;
     }
-    for(int i=0;i<n;i++){
-    for(int j=0;j<n;j++){
-        (*matrix)(i,j) = (*eigenVectors)(i,j)/dualArea(i);
+  }
+  for(int i=0;i<nRow;i++){
+    for(int j=0;j<nCol;j++){
+      (*matrix)(i,j) = (*eigenVectors)(i,j)/dualArea(i);
     }
-    }
-    return matrix;
+  }
+  return matrix;
 }
 
 void printDisplacedVertices(vector<Vector3d> vertices,VectorXd eigenVector,vector<bool> isFixed)
