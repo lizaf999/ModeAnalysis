@@ -79,8 +79,9 @@ class ViewController: NSViewController {
     case Torus = "Torus"
     case GeodesicDome = "GeodesicDome"
     case SphereImplicit = "SphereImplict"
+    case Bunny = "Bunny"
     
-    static let types:[String] = [Parallelogram,Sphere,Torus,GeodesicDome,SphereImplicit].map{$0.rawValue}
+    static let types:[String] = [Parallelogram,Sphere,Torus,GeodesicDome,SphereImplicit,Bunny].map{$0.rawValue}
   }
   
   enum DrawMode:String {
@@ -115,7 +116,6 @@ class ViewController: NSViewController {
   }
   
   func drawDisplacedVertices(ID:Int){
-    //FIXME: 上限ギリギリのIDが入ってくるとgetEigenVectorで落ちる
     if mode.vertices.isEmpty||ID<0||ID>=mode.vertices.count {
       return
     }
@@ -168,6 +168,8 @@ class ViewController: NSViewController {
         mode = GeodesicDome()
       case .SphereImplicit:
         mode = SphereImplicit()
+      case .Bunny:
+        mode = InputMesh(filename: "bunny_res4", Extension: "ply")
       }
       
       mode.setMesh()

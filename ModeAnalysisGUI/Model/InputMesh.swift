@@ -9,6 +9,11 @@ import Foundation
 import ModelIO
 
 class InputMesh: Polygon {
+  init(filename:String,Extension:String) {
+    super.init()
+    MeshLoader(filename: filename, Extension: Extension)
+  }
+
   func MeshLoader(filename:String, Extension:String) {
     guard let url = Bundle.main.url(forResource: filename, withExtension: Extension) else {
       fatalError("Failed to find model file.")
@@ -17,7 +22,6 @@ class InputMesh: Polygon {
     guard let mesh:MDLMesh = asset.object(at: 0) as? MDLMesh else {
       fatalError("Failed to get mesh from asset.")
     }
-    let desc:MDLVertexDescriptor = mesh.vertexDescriptor
     if mesh.vertexBuffers.count==1 {
       mesh.addNormals(withAttributeNamed: MDLVertexAttributeNormal, creaseThreshold: 1)//no smoothing
     }
@@ -30,7 +34,9 @@ class InputMesh: Polygon {
     let opaque1 = OpaquePointer(attrNorm.dataStart)
     var p0 = UnsafeMutablePointer<Float>(opaque0)
     var p1 = UnsafeMutablePointer<Float>(opaque1)
-    for i in 0..<mesh.vertexCount {
+
+
+    for _ in 0..<mesh.vertexCount {
       var pos = double3(0)
       pos.x = double_t(p0.pointee)
       pos.y = double_t((p0+1).pointee)
@@ -45,18 +51,19 @@ class InputMesh: Polygon {
       p0 += attrPos.stride/MemoryLayout<Float>.size
       p1 += attrNorm.stride/MemoryLayout<Float>.size
     }
+    print(attrPos.stride,MemoryLayout<Float>.size)
     for subMesh:MDLSubmesh in mesh.submeshes as! [MDLSubmesh] {
       if subMesh.geometryType != MDLGeometryType.triangles {
         fatalError("Mesh data should be composed of triangles.")
       }
       let opaque3 = OpaquePointer(subMesh.indexBuffer.map().bytes)
+      var maxID:Int = 0
       switch subMesh.indexType {
-
       case .invalid:
         fatalError("Mesh data type is invalid.")
       case .uInt8:
         var p3 = UnsafeMutablePointer<uint8>(opaque3)
-        for _ in 0..<subMesh.indexCount {
+        for _ in 0..<subMesh.indexBuffer.length/3 {
           let f1 = Int(p3.pointee)
           let f2 = Int((p3+1).pointee)
           let f3 = Int((p3+2).pointee)
@@ -65,7 +72,7 @@ class InputMesh: Polygon {
         }
       case .uInt16:
         var p3 = UnsafeMutablePointer<uint16>(opaque3)
-        for _ in 0..<subMesh.indexCount {
+        for _ in 0..<subMesh.indexBuffer.length/2/3 {
           let f1 = Int(p3.pointee)
           let f2 = Int((p3+1).pointee)
           let f3 = Int((p3+2).pointee)
@@ -74,16 +81,19 @@ class InputMesh: Polygon {
         }
       case .uInt32:
         var p3 = UnsafeMutablePointer<uint32>(opaque3)
-        for _ in 0..<subMesh.indexCount {
+        for _ in 0...subMesh.indexBuffer.length/4/3 {
           let f1 = Int(p3.pointee)
           let f2 = Int((p3+1).pointee)
           let f3 = Int((p3+2).pointee)
           faces.append([f1,f2,f3])
           p3 += 3
+          if max(f1,f2,f3)>maxID {maxID=max(f1,f2,f3)}
         }
+
+
       }
-
-
+      print(mesh.vertexCount,subMesh.indexCount, vertices.count,faces.count)
+      print(maxID)
     }
 
   }
