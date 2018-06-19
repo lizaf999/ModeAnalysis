@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C3132E1120D925780013B098 /* InputMesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3132E1020D925780013B098 /* InputMesh.swift */; };
 		C3188A45205CE2FD00C5080F /* Mesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3188A3B205CE2FD00C5080F /* Mesh.swift */; };
 		C3188A46205CE2FD00C5080F /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3188A3D205CE2FD00C5080F /* Math.swift */; };
 		C3188A47205CE2FE00C5080F /* UniformState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3188A3E205CE2FD00C5080F /* UniformState.swift */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C3132E1020D925780013B098 /* InputMesh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputMesh.swift; sourceTree = "<group>"; };
 		C3188A3B205CE2FD00C5080F /* Mesh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mesh.swift; sourceTree = "<group>"; };
 		C3188A3D205CE2FD00C5080F /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
 		C3188A3E205CE2FD00C5080F /* UniformState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniformState.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				C3C1CE5B205A6D270064B5D1 /* Polygon.swift */,
+				C3132E1020D925780013B098 /* InputMesh.swift */,
 				C3C1CE5D205A6F160064B5D1 /* Primitives.swift */,
 				C3C2D1E92069CA2300F06E0F /* DualContouring3D.swift */,
 			);
@@ -301,6 +304,7 @@
 				C3C1CE58205A49B00064B5D1 /* ModeAnalysis.cpp in Sources */,
 				C3188A4A205CE2FE00C5080F /* MeshRender.swift in Sources */,
 				C3188A47205CE2FE00C5080F /* UniformState.swift in Sources */,
+				C3132E1120D925780013B098 /* InputMesh.swift in Sources */,
 				C3188A48205CE2FE00C5080F /* RenderableObject.swift in Sources */,
 				C3188A49205CE2FE00C5080F /* Camera.swift in Sources */,
 				C3C1CE56205A49B00064B5D1 /* ExteriorCalculus.cpp in Sources */,
