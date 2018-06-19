@@ -19,9 +19,22 @@ class Polygon: NSObject {
     //set vertices,faces,normal,displacementBases here.
   }
 
-  final func solveEigen() {
-    if(vertices.isEmpty||faces.isEmpty||normal.isEmpty||displacementBases.isEmpty){
-      fatalError("more than one array is empty.")
+    final func solveEigen() {
+        if(vertices.isEmpty||faces.isEmpty||normal.isEmpty||displacementBases.isEmpty){
+            fatalError("more than one array is empty.")
+        }
+
+        var v:[[double_t]] = [[double_t]]()
+        vertices.forEach { (p) in
+            v.append([p[0],p[1],p[2]])
+        }
+        modeAnalysis.setVerticesAndFaces(v, faces: faces)
+
+        let date = Date()
+        modeAnalysis.solveEigenValueProblem()
+        let t = Date().timeIntervalSince(date)
+        print(String(format: "elapsed time %.2fsec", arguments: [float_t(t)]))
+
     }
 
     var v:[[double_t]] = [[double_t]]()

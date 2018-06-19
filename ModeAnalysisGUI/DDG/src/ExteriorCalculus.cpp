@@ -2,6 +2,7 @@
 #include "../include/Eigen/Core"
 #include "../include/Eigen/Dense"
 #include "../include/Eigen/SparseCore"
+
 #include "../include/HalfEdge.h"
 #include "../include/Spectra/SymEigsSolver.h"
 #include "../include/Spectra/MatOp/SparseSymMatProd.h"
@@ -44,12 +45,12 @@ SparseMatrix<double>* getLaplacian0form(vector<bool> isFixed,HEGraph* graph)
 
 vector<bool> detectBoundary(HEGraph* graph)
 {
-    cout << "detectBoundary start. ";
-    int n = graph->vertices.size();
-    vector<bool> isFixed(n,false);
+  cout << "detectBoundary start. ";
+  int n = graph->vertices.size();
+  vector<bool> isFixed(n,false);
 
-    bool noBoundary = true;
-    for(auto vertex: graph->vertices){
+  bool noBoundary = true;
+  for(auto vertex: graph->vertices){
     for(auto edge: vertex->flows){
       if(edge->pair==NULL){
         isFixed[edge->vertex->ID] = true;
@@ -163,63 +164,63 @@ Eigen::MatrixXd* getGeneralizedEigenVectors(MatrixXd* eigenVectors, vector<bool>
 
 void printDisplacedVertices(vector<Vector3d> vertices,VectorXd eigenVector,vector<bool> isFixed)
 {
-    cout << "print vertices" << endl;
-    int n_mod = eigenVector.size();
-    vector<double> vec(n_mod,0);
-    double maxi = 0;
-    for(int i=0;i<n_mod;i++){
-        vec[i] = eigenVector(i);
-        if(abs(vec[i])>maxi) maxi = abs(vec[i]);
-    }
-    if(maxi==0){
-        cout << "0 vector" << endl;
-        maxi=1;
-        return;
-    }
-    for(int i=0;i<n_mod;i++){
-        vec[i] /= maxi;
-    }
+  cout << "print vertices" << endl;
+  int n_mod = eigenVector.size();
+  vector<double> vec(n_mod,0);
+  double maxi = 0;
+  for(int i=0;i<n_mod;i++){
+    vec[i] = eigenVector(i);
+    if(abs(vec[i])>maxi) maxi = abs(vec[i]);
+  }
+  if(maxi==0){
+    cout << "0 vector" << endl;
+    maxi=1;
+    return;
+  }
+  for(int i=0;i<n_mod;i++){
+    vec[i] /= maxi;
+  }
 
-    int j=0;
-    for(int i=0;i<vertices.size();i++){
-         Vector3d p(0,0,0);
-        if(!isFixed[i]){
-            p = vertices[i] + vec[j]*v3(0,0,1)*0.3;
-            j++;
-        }else{
-            p = vertices[i];
-        }
-        cout <<p.transpose()<<endl;
+  int j=0;
+  for(int i=0;i<vertices.size();i++){
+    Vector3d p(0,0,0);
+    if(!isFixed[i]){
+      p = vertices[i] + vec[j]*v3(0,0,1)*0.3;
+      j++;
+    }else{
+      p = vertices[i];
     }
-    
+    cout <<p.transpose()<<endl;
+  }
+
 }
 
 VectorXd getFullEigenVector(VectorXd eigenVector,vector<bool> isFixed)
 {
-    cout<<"getFullEigenVector"<<endl;
-    int n_small = eigenVector.size();
-    vector<double> vec(n_small,0);
-    double maxi=0;
-    for(int i=0;i<n_small;i++){
-        vec[i] = eigenVector(i);
-        if(abs(vec[i])>maxi) maxi = abs(vec[i]);
-    }
-    if(maxi==0){
-        cout << "0 vector" << endl;
-        maxi=1;
-    }
+  cout<<"getFullEigenVector"<<endl;
+  int n_small = eigenVector.size();
+  vector<double> vec(n_small,0);
+  double maxi=0;
+  for(int i=0;i<n_small;i++){
+    vec[i] = eigenVector(i);
+    if(abs(vec[i])>maxi) maxi = abs(vec[i]);
+  }
+  if(maxi==0){
+    cout << "0 vector" << endl;
+    maxi=1;
+  }
 
-    VectorXd fullvec = VectorXd(isFixed.size());
-    int j=0;
-    for(int i=0;i<isFixed.size();i++){
-        if(isFixed[i]){
-            fullvec(i) = 0;
-        }else{
-            fullvec(i) = vec[j]/maxi;
-            j++;
-        }
+  VectorXd fullvec = VectorXd(isFixed.size());
+  int j=0;
+  for(int i=0;i<isFixed.size();i++){
+    if(isFixed[i]){
+      fullvec(i) = 0;
+    }else{
+      fullvec(i) = vec[j]/maxi;
+      j++;
     }
-    return fullvec;
+  }
+  return fullvec;
 }
 
 
