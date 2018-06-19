@@ -16,7 +16,7 @@ SparseMatrix<double>* getLaplacian0form(vector<bool> isFixed,HEGraph* graph)
 {
   cout << "getLaplacian0form start.";
   int n = graph->vertices.size();
-
+  
   SparseMatrix<double>* M = new SparseMatrix<double>(n,n);
   M->reserve(6*n);
   for(auto vertex: graph->vertices){
@@ -28,7 +28,7 @@ SparseMatrix<double>* getLaplacian0form(vector<bool> isFixed,HEGraph* graph)
       for(auto edge: vertex->flows){
         double cot = edge->cotanSum();
         acc_cot += cot;
-
+        
         int nextID = edge->next->vertex->ID;
         if(!isFixed[nextID]){M->insert(id,nextID) = cot;}//+=じゃなくても大丈夫か
         else{}
@@ -37,9 +37,9 @@ SparseMatrix<double>* getLaplacian0form(vector<bool> isFixed,HEGraph* graph)
     }
   }
   cout << " finished." << endl;
-
-
-
+  
+  
+  
   return M;
 }
 
@@ -48,7 +48,7 @@ vector<bool> detectBoundary(HEGraph* graph)
   cout << "detectBoundary start. ";
   int n = graph->vertices.size();
   vector<bool> isFixed(n,false);
-
+  
   bool noBoundary = true;
   for(auto vertex: graph->vertices){
     for(auto edge: vertex->flows){
@@ -76,7 +76,7 @@ void convert0formToGenenalized3form(SparseMatrix<double>* matrix,vector<bool> is
       assert(dualArea[i]>0);
     }
   }
-
+  
   int nOuter = matrix->outerSize();
   for (int i=0; i<nOuter; i++) {
     for (SparseMatrix<double>::InnerIterator it(*matrix,i); it; ++it) {
@@ -85,7 +85,7 @@ void convert0formToGenenalized3form(SparseMatrix<double>* matrix,vector<bool> is
       matrix->coeffRef(row, col) /= sqrt(dualArea[row]*dualArea[col]);
     }
   }
-
+  
   cout << " finished." << endl;
 }
 
@@ -96,12 +96,12 @@ SparseMatrix<double>* reshapeForModeAnalysis(SparseMatrix<double>* matrix,vector
   for(int i=0;i<isFixed.size();i++){
     if(!isFixed[i]) n++;
   }
-
+  
   if (n==matrix->cols()){
     cout << "No chages. finished." << endl;
     return matrix;
   }
-
+  
   SparseMatrix<double>* matrix_tar = new SparseMatrix<double>(n,n);
   matrix_tar->reserve(6*n);
   int col = 0;
@@ -127,7 +127,7 @@ SparseMatrix<double>* reshapeForModeAnalysis(SparseMatrix<double>* matrix,vector
 void calcEigenValueandVector(SparseMatrix<double>* matrix,VectorXd* eigenValues,MatrixXd* eigenVectors)
 {
   cout << "calcEigenValuesAndVectors start."<<endl;
-
+  
   SparseSymMatProd<double> op(*matrix);
   SymEigsSolver<double, SMALLEST_MAGN, SparseSymMatProd<double>> eigs(&op, 100, 200);
   eigs.init();
@@ -146,7 +146,7 @@ Eigen::MatrixXd* getGeneralizedEigenVectors(MatrixXd* eigenVectors, vector<bool>
   VectorXd dualArea(nRow);
   MatrixXd* matrix = new MatrixXd();
   *matrix = MatrixXd::Zero(nRow,nCol);
-
+  
   int k=0;
   for(int i=0;i<graph->vertices.size();i++){
     if(!isFixed[i]){
@@ -180,7 +180,7 @@ void printDisplacedVertices(vector<Vector3d> vertices,VectorXd eigenVector,vecto
   for(int i=0;i<n_mod;i++){
     vec[i] /= maxi;
   }
-
+  
   int j=0;
   for(int i=0;i<vertices.size();i++){
     Vector3d p(0,0,0);
@@ -192,7 +192,7 @@ void printDisplacedVertices(vector<Vector3d> vertices,VectorXd eigenVector,vecto
     }
     cout <<p.transpose()<<endl;
   }
-
+  
 }
 
 VectorXd getFullEigenVector(VectorXd eigenVector,vector<bool> isFixed)
@@ -209,7 +209,7 @@ VectorXd getFullEigenVector(VectorXd eigenVector,vector<bool> isFixed)
     cout << "0 vector" << endl;
     maxi=1;
   }
-
+  
   VectorXd fullvec = VectorXd(isFixed.size());
   int j=0;
   for(int i=0;i<isFixed.size();i++){

@@ -12,7 +12,7 @@ class ViewController: NSViewController {
   @IBAction func idEntered(_ sender: NSTextField) {
     if let id = Int(sender.stringValue) {
       sender.isEnabled = false
-
+      
       if let mode = DrawMode(rawValue: drawModePopup.titleOfSelectedItem!) {
         switch mode {
         case .EigenVector:
@@ -23,7 +23,7 @@ class ViewController: NSViewController {
       }else{
         print("Invalid drawMode")
       }
-
+      
       sender.isEnabled = true
     }
   }
@@ -35,7 +35,7 @@ class ViewController: NSViewController {
       self.mode.solveEigen()
       DispatchQueue.main.async {
         self.drawDisplacedVertices(ID: 4)
-
+        
         self.idTextField.isEnabled = true
         self.primitivePopup.isEnabled = true
         self.animationButton.isEnabled = true
@@ -46,7 +46,7 @@ class ViewController: NSViewController {
     didSet{
       primitivePopup.removeAllItems()
       primitivePopup.addItem(withTitle: "PrimitiveType")
-
+      
       for type in PrimitiveType.types {
         let menu = NSMenuItem(title: type, action: #selector(typeSelected(item:)), keyEquivalent: "")
         menu.target = self
@@ -54,11 +54,11 @@ class ViewController: NSViewController {
       }
     }
   }
-
+  
   @IBOutlet weak var drawModePopup: NSPopUpButton!{
     didSet{
       drawModePopup.removeAllItems()
-
+      
       for mode in DrawMode.modes {
         let menu = NSMenuItem(title: mode, action: nil, keyEquivalent: "")
         menu.target = self
@@ -66,42 +66,42 @@ class ViewController: NSViewController {
       }
     }
   }
-
-
+  
+  
   //for camera
   var preMouse:NSPoint = NSPoint()
   //model
   var mode:Polygon! = nil
-
+  
   enum PrimitiveType:String {
     case Parallelogram = "Parallelogram"
     case Sphere = "Sphere"
     case Torus = "Torus"
     case GeodesicDome = "GeodesicDome"
     case SphereImplicit = "SphereImplict"
-
+    
     static let types:[String] = [Parallelogram,Sphere,Torus,GeodesicDome,SphereImplicit].map{$0.rawValue}
   }
-
+  
   enum DrawMode:String {
     case EigenVector = "EigenVector"
     case SeriesExpansion = "SeriesExpansion"
-
+    
     static let modes:[String] = [EigenVector,SeriesExpansion].map{$0.rawValue}
   }
-
-
+  
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-
+    
     idTextField.isEnabled = false
     calcButton.isEnabled = false
     animationButton.state = .on
     animationButton.isEnabled = false
-
+    
     defaultSetup(mtkview)
   }
-
+  
   func drawPrimitive(){
     let obj = MeshRender()
     let mesh = Mesh(pos: mode.vertices, normal: mode.normal, indices: mode.faces)
@@ -109,11 +109,11 @@ class ViewController: NSViewController {
       NSLog("Mesh could not be created.")
       return
     }
-
+    
     removeAllRenderTarget()
     addRenderTargets(target: obj)
   }
-
+  
   func drawDisplacedVertices(ID:Int){
     //FIXME: 上限ギリギリのIDが入ってくるとgetEigenVectorで落ちる
     if mode.vertices.isEmpty||ID<0||ID>=mode.vertices.count {
@@ -121,18 +121,18 @@ class ViewController: NSViewController {
     }
     //let pos:[double3] = mode.getDisplacedVertices(ID: ID)
     let pos:[double3] = mode.vertices
-
+    
     let obj = MeshRender()
     let mesh = Mesh(pos: pos, normal: mode.getDisplacedNormal(pos: pos), indices: mode.faces, values: mode.getEigenVector(ID: ID))
     if !obj.setup(.Diffuse, meshs: [mesh]){
       NSLog("Mesh could not be created.")
       return
     }
-
+    
     removeAllRenderTarget()
     addRenderTargets(target: obj)
   }
-
+  
   func drawProjectedOnEigenVec(ID:Int) {
     if mode.vertices.isEmpty||ID<0||ID>=mode.vertices.count {
       return
@@ -145,17 +145,17 @@ class ViewController: NSViewController {
       NSLog("Mesh could not be created.")
       return
     }
-
+    
     removeAllRenderTarget()
     addRenderTargets(target: obj)
   }
-
+  
   @objc func typeSelected(item:NSMenuItem){
     if primitivePopup.title != item.title {
       calcButton.isEnabled = true
     }
     primitivePopup.title = item.title
-
+    
     if let type = PrimitiveType(rawValue: item.title) {
       switch type{
       case .Parallelogram:
@@ -169,13 +169,13 @@ class ViewController: NSViewController {
       case .SphereImplicit:
         mode = SphereImplicit()
       }
-
+      
       mode.setMesh()
       drawPrimitive()
     }
     idTextField.isEnabled = false
   }
-
+  
   override func mouseDown(with event: NSEvent) {
     preMouse = event.locationInWindow
   }
@@ -187,13 +187,13 @@ class ViewController: NSViewController {
     Render.current.camera.polarPosRTP += float3(0,Float(dT/self.view.frame.width),Float(-dP/self.view.frame.height))*5
     Render.current.camera.setUpDir()
     preMouse = p
-
+    
   }
   override func magnify(with event: NSEvent) {
     Render.current.camera.polarPosRTP.x += -Float(event.magnification*30)
   }
-
-
-
+  
+  
+  
 }
 

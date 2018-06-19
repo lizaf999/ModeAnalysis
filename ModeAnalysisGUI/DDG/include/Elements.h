@@ -12,37 +12,37 @@ class HEFace;
 
 class HEEdge 
 {
-    public:
-    HEVertex* vertex;
-    HEEdge* next;
-    HEEdge* pair;
-    HEFace* face;
-
-    double cotan();
-    double cotanSum();
+public:
+  HEVertex* vertex;
+  HEEdge* next;
+  HEEdge* pair;
+  HEFace* face;
+  
+  double cotan();
+  double cotanSum();
 };
 
 class HEVertex
 {
-    public:
-    HEEdge* edge;
-    Vector3d pos;
-    std::vector<HEEdge*> flows;
-    int ID;
-
-    HEVertex(Vector3d pos,int ID)
-    {
-        this->pos = pos;
-        this->ID = ID;
-    }
-
-    double dualArea();
+public:
+  HEEdge* edge;
+  Vector3d pos;
+  std::vector<HEEdge*> flows;
+  int ID;
+  
+  HEVertex(Vector3d pos,int ID)
+  {
+    this->pos = pos;
+    this->ID = ID;
+  }
+  
+  double dualArea();
 };
 
 class HEFace
 {
-    public:
-    HEEdge* edge;
+public:
+  HEEdge* edge;
 };
 
 #endif

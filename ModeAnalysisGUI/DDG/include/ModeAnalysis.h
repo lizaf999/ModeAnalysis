@@ -13,17 +13,17 @@ private:
   vector<vector<int> > faces;
   HEGraph* graph;
   vector<bool> isFixed;
-
+  
   VectorXd* eigenValues;
   MatrixXd* eigenVectors;
-
+  
 public:
   struct xyz{
     double x;
     double y;
     double z;
   };
-
+  
   void setVerticesandFaces(vector<xyz> vertices,vector<vector<int> > faces);
   void solveEigenProblem();
   vector<double> getEigenValues();
