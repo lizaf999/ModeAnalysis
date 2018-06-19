@@ -19,8 +19,8 @@ void ModeAnalysis::setVerticesandFaces(vector<ModeAnalysis::xyz> vertices,vector
 void ModeAnalysis::solveEigenProblem()
 {   
   graph = new HEGraph();
-  SparseMatrix<double>* matrix = new SparseMatrix<double>();
-  SparseMatrix<double>* matrix_small = new SparseMatrix<double>();
+  SparseMatrix<double>* matrix;
+  SparseMatrix<double>* matrix_small;
 
   graph->setElements(vertices,faces);
   isFixed = detectBoundary(graph);
@@ -29,7 +29,9 @@ void ModeAnalysis::solveEigenProblem()
   convert0formToGenenalized3form(matrix,isFixed,graph);
 
   matrix_small = reshapeForModeAnalysis(matrix,isFixed);
-  delete(matrix);
+  if (matrix!=matrix_small) {
+    delete(matrix);
+  }
 
   MatrixXd* vecs = new MatrixXd();
   eigenValues = new VectorXd();

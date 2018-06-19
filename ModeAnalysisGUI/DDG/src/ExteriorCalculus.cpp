@@ -24,15 +24,16 @@ SparseMatrix<double>* getLaplacian0form(vector<bool> isFixed,HEGraph* graph)
     if(isFixed[id]){
       M->insert(id, id) = 1;
     }else{
-      double cot = 0;
+      double acc_cot = 0;
       for(auto edge: vertex->flows){
-        cot += edge->cotanSum();
+        double cot = edge->cotanSum();
+        acc_cot += cot;
 
         int nextID = edge->next->vertex->ID;
         if(!isFixed[nextID]){M->insert(id,nextID) = cot;}//+=じゃなくても大丈夫か
         else{}
       }
-      M->insert(id, id) = -cot;
+      M->insert(id, id) = -acc_cot;
     }
   }
   cout << " finished." << endl;
@@ -127,9 +128,8 @@ void calcEigenValueandVector(SparseMatrix<double>* matrix,VectorXd* eigenValues,
 {
   cout << "calcEigenValuesAndVectors start."<<endl;
 
-  //DenseSymMatProd<double> op(*matrix);
   SparseSymMatProd<double> op(*matrix);
-  SymEigsSolver<double, SMALLEST_MAGN, SparseSymMatProd<double>> eigs(&op, 100, 300);
+  SymEigsSolver<double, SMALLEST_MAGN, SparseSymMatProd<double>> eigs(&op, 100, 200);
   eigs.init();
   eigs.compute();
   if (eigs.info() == SUCCESSFUL) {
