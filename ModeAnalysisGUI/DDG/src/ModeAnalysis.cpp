@@ -1,6 +1,7 @@
 #include "../include/ModeAnalysis.h"
 #include "../include/ExteriorCalculus.h"
 #include "../include/Eigen/Dense"
+#include "../include/Eigen/SparseCore"
 #include <vector>
 #include <iostream>
 
@@ -18,8 +19,8 @@ void ModeAnalysis::setVerticesandFaces(vector<ModeAnalysis::xyz> vertices,vector
 void ModeAnalysis::solveEigenProblem()
 {   
     graph = new HEGraph();
-    MatrixXd* matrix = new MatrixXd();
-    MatrixXd* matrix_small = new MatrixXd();
+    SparseMatrix<double>* matrix = new SparseMatrix<double>();
+    SparseMatrix<double>* matrix_small = new SparseMatrix<double>();
     
     graph->setElements(vertices,faces);
     isFixed = detectBoundary(graph);
@@ -50,10 +51,10 @@ vector<double> ModeAnalysis::getEigenValues()
 
 vector<double> ModeAnalysis::getEigenVector(int ID)
 {
-    if (ID>eigenVectors->cols()) {
+    if (ID>=eigenVectors->cols()) {
         return vector<double>(isFixed.size(),0);
     }
-    VectorXd eigenVector = eigenVectors->col(eigenVectors->cols()-ID-1);//inverse
+    VectorXd eigenVector = eigenVectors->col(ID);
     int n_small = eigenVector.size();
     vector<double> vec(n_small,0);
     double maxi=0;

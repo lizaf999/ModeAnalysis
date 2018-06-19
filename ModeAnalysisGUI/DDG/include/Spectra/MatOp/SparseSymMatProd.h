@@ -7,8 +7,8 @@
 #ifndef SPARSE_SYM_MAT_PROD_H
 #define SPARSE_SYM_MAT_PROD_H
 
-#include <Eigen/Core>
-#include <Eigen/SparseCore>
+#include "../../Eigen/Core"
+#include "../../Eigen/SparseCore"
 
 namespace Spectra {
 
