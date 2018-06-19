@@ -1,4 +1,5 @@
 #include <vector>
+#include <iostream>
 #include "../include/Eigen/Core"
 #include "../include/Elements.h"
 #include "../include/HEGraph.h"
@@ -19,6 +20,7 @@ void HEGraph::setVertices(vector<v3> pos)
         HEVertex* vertex = new HEVertex(pos[i],i);
         this->vertices.push_back(vertex);
     }
+  cout << "Verteices Count " << this->vertices.size()<<endl;
 }
 
 void HEGraph::setFaces(vector<vector<int> > polygons)
