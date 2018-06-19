@@ -17,6 +17,9 @@ typedef struct XYZ{
 -(NSArray*)getEigenValue;
 -(NSArray*)getEigenVector:(int) ID;
 -(NSArray*)getNormals:(NSArray*)positions;
+-(NSArray*)getProjectedPosOn:(int) eigenID;
+#pragma mark Public Mehotds
+//-(NSArray*)array_xyzToNSArray:(std::vector<ModeAnalysis::xyz>*) vertices_cpp;
 @end
 
 

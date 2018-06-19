@@ -8,27 +8,28 @@ using namespace std;
 using namespace Eigen;
 
 class ModeAnalysis{
-    private:
-    vector<Vector3d> vertices;
-    vector<vector<int> > faces;
-    HEGraph* graph;
-    vector<bool> isFixed;
+private:
+  vector<Vector3d> vertices;
+  vector<vector<int> > faces;
+  HEGraph* graph;
+  vector<bool> isFixed;
 
-    VectorXd* eigenValues;
-    MatrixXd* eigenVectors;
+  VectorXd* eigenValues;
+  MatrixXd* eigenVectors;
 
-    public:
-    struct xyz{
-        double x;
-        double y;
-        double z;
-    };
-    
-    void setVerticesandFaces(vector<xyz> vertices,vector<vector<int> > faces);
-    void solveEigenProblem();
-    vector<double> getEigenValues();
-    vector<double> getEigenVector(int ID);
-    vector<xyz> getNormal(vector<xyz> positions);
+public:
+  struct xyz{
+    double x;
+    double y;
+    double z;
+  };
+
+  void setVerticesandFaces(vector<xyz> vertices,vector<vector<int> > faces);
+  void solveEigenProblem();
+  vector<double> getEigenValues();
+  vector<double> getEigenVector(int ID);
+  vector<xyz> getNormal(vector<xyz> positions);
+  vector<xyz> projectPosOnEigenVec(int ID);
 };
 
 #endif

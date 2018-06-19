@@ -120,6 +120,66 @@ vector<ModeAnalysis::xyz> ModeAnalysis::getNormal(vector<ModeAnalysis::xyz> posi
   return normals_xyz;
 }
 
+vector<ModeAnalysis::xyz> ModeAnalysis::projectPosOnEigenVec(int ID)
+{
+  int n = vertices.size();
+  int nVal = eigenValues->size();
+  if (ID>=nVal) {
+    return vector<xyz>(vertices.size(),xyz({0,0,0}));
+  }
+  vector<double> eigenVec = getEigenVector(ID);
+  Vector3d mht = Vector3d::Zero();
+  double norm = 0;
+  for (int i=0; i<n; i++) {
+    mht += vertices[i]*eigenVec[i];
+    norm += eigenVec[i]*eigenVec[i];
+  }
+  
+  //IDまで全て重ね合わせる
+  vector<xyz> projected(n,xyz({0,0,0}));
+
+  for (int j=ID; j>=0; j--) {
+    eigenVec = getEigenVector(j);
+    mht = Vector3d::Zero();
+    norm = 0;
+    for (int i=0; i<n; i++) {
+      mht += vertices[i]*eigenVec[i];
+      norm += eigenVec[i]*eigenVec[i];
+    }
+    for (int i=0; i<n; i++) {
+      Vector3d p = mht*eigenVec[i]/norm;
+      projected[i].x += p.x();
+      projected[i].y += p.y();
+      projected[i].z += p.z();
+    }
+  }
+
+  static vector<pair<double, int>> absMHT;
+  if (absMHT.size() != eigenValues->size()) {
+    absMHT = vector<pair<double, int>>(nVal,make_pair(0, 0));
+    for (int i=0; i<nVal; i++) {
+      eigenVec = getEigenVector(i);
+      mht = Vector3d::Zero();
+      norm = 0;
+      for (int j=0; j<n; j++) {
+        mht += vertices[j]*eigenVec[j];
+        norm += eigenVec[j]*eigenVec[j];
+      }
+      double lg = mht.norm();
+      absMHT[i] = make_pair(lg, i);
+    }
+    sort(absMHT.begin(), absMHT.end(), greater<pair<double, int>>());
+    for (int i=0; i<20; i++) {
+      cout << absMHT[i].first << " " << absMHT[i].second << endl;
+    }
+  }
+
+
+
+
+  return projected;
+}
+
 
 
 

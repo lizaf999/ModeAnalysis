@@ -12,7 +12,18 @@ class ViewController: NSViewController {
   @IBAction func idEntered(_ sender: NSTextField) {
     if let id = Int(sender.stringValue) {
       sender.isEnabled = false
-      drawDisplacedVertices(ID: id)
+
+      if let mode = DrawMode(rawValue: drawModePopup.titleOfSelectedItem!) {
+        switch mode {
+        case .EigenVector:
+          drawDisplacedVertices(ID: id)
+        case .SeriesExpansion:
+          drawProjectedOnEigenVec(ID: id)
+        }
+      }else{
+        print("Invalid drawMode")
+      }
+
       sender.isEnabled = true
     }
   }
@@ -44,6 +55,18 @@ class ViewController: NSViewController {
     }
   }
 
+  @IBOutlet weak var drawModePopup: NSPopUpButton!{
+    didSet{
+      drawModePopup.removeAllItems()
+
+      for mode in DrawMode.modes {
+        let menu = NSMenuItem(title: mode, action: nil, keyEquivalent: "")
+        menu.target = self
+        drawModePopup.menu?.addItem(menu)
+      }
+    }
+  }
+
 
   //for camera
   var preMouse:NSPoint = NSPoint()
@@ -58,6 +81,13 @@ class ViewController: NSViewController {
     case SphereImplicit = "SphereImplict"
 
     static let types:[String] = [Parallelogram,Sphere,Torus,GeodesicDome,SphereImplicit].map{$0.rawValue}
+  }
+
+  enum DrawMode:String {
+    case EigenVector = "EigenVector"
+    case SeriesExpansion = "SeriesExpansion"
+
+    static let modes:[String] = [EigenVector,SeriesExpansion].map{$0.rawValue}
   }
 
 
@@ -94,6 +124,23 @@ class ViewController: NSViewController {
 
     let obj = MeshRender()
     let mesh = Mesh(pos: pos, normal: mode.getDisplacedNormal(pos: pos), indices: mode.faces, values: mode.getEigenVector(ID: ID))
+    if !obj.setup(.Diffuse, meshs: [mesh]){
+      NSLog("Mesh could not be created.")
+      return
+    }
+
+    removeAllRenderTarget()
+    addRenderTargets(target: obj)
+  }
+
+  func drawProjectedOnEigenVec(ID:Int) {
+    if mode.vertices.isEmpty||ID<0||ID>=mode.vertices.count {
+      return
+    }
+    let pos:[double3] = mode.getVerticesProjectedOn(ID: ID)
+    
+    let obj = MeshRender()
+    let mesh = Mesh(pos: pos, normal: mode.getDisplacedNormal(pos: pos), indices: mode.faces)
     if !obj.setup(.Diffuse, meshs: [mesh]){
       NSLog("Mesh could not be created.")
       return

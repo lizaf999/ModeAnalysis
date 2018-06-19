@@ -13,7 +13,7 @@ using namespace Spectra;
 using namespace std;
 
 SparseMatrix<double>* getLaplacian0form(vector<bool> isFixed,HEGraph* graph)
-{   
+{
   cout << "getLaplacian0form start.";
   int n = graph->vertices.size();
 

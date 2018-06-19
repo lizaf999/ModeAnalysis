@@ -714,7 +714,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </customView>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="poa-r0-kPq">
-                                <rect key="frame" x="572" y="458" width="41" height="22"/>
+                                <rect key="frame" x="581" y="354" width="41" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" title="4" drawsBackground="YES" id="1FO-tM-vg6">
                                     <font key="font" metaFont="system"/>
@@ -725,8 +725,54 @@
                                     <action selector="idEntered:" target="XfG-lQ-9wD" id="eWk-Ot-LXu"/>
                                 </connections>
                             </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ckb-MP-jsY">
+                                <rect key="frame" x="547" y="389" width="83" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Calc." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="KrT-K6-8R5">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="calcStart:" target="XfG-lQ-9wD" id="Zl2-3y-o1U"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bA6-rK-qK6">
+                                <rect key="frame" x="552" y="352" width="37" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="ID" id="RFi-gs-WXz">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2bN-U7-3PL">
+                                <rect key="frame" x="547" y="313" width="81" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="animation" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="e6O-9T-Wt2">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="animationEnable:" target="XfG-lQ-9wD" id="i7h-Ya-5jn"/>
+                                </connections>
+                            </button>
+                            <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gr6-gt-ube">
+                                <rect key="frame" x="515" y="425" width="147" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <popUpButtonCell key="cell" type="push" title="DrawMode" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Dy1-5Y-YeV" id="GZu-rU-unO">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="BDp-as-SH8">
+                                        <items>
+                                            <menuItem title="DrawMode" state="on" id="Dy1-5Y-YeV"/>
+                                            <menuItem title="Item 2" id="zse-an-2Qe"/>
+                                            <menuItem title="Item 3" id="Iij-qc-RXS"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                            </popUpButton>
                             <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DB7-3b-ohD">
-                                <rect key="frame" x="518" y="414" width="148" height="26"/>
+                                <rect key="frame" x="514" y="456" width="148" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <popUpButtonCell key="cell" type="push" title="PrimitiveType" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="a90-Qb-Wkt" id="KVC-oQ-4Fc">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -740,46 +786,15 @@
                                     </menu>
                                 </popUpButtonCell>
                             </popUpButton>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ckb-MP-jsY">
-                                <rect key="frame" x="551" y="378" width="83" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Calc." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="KrT-K6-8R5">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="calcStart:" target="XfG-lQ-9wD" id="Zl2-3y-o1U"/>
-                                </connections>
-                            </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bA6-rK-qK6">
-                                <rect key="frame" x="543" y="456" width="37" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="ID" id="RFi-gs-WXz">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2bN-U7-3PL">
-                                <rect key="frame" x="551" y="341" width="83" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Animation" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="e6O-9T-Wt2">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="animationEnable:" target="XfG-lQ-9wD" id="i7h-Ya-5jn"/>
-                                </connections>
-                            </button>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="animationButton" destination="2bN-U7-3PL" id="GdX-UW-lUA"/>
                         <outlet property="calcButton" destination="Ckb-MP-jsY" id="nzs-3t-AyB"/>
+                        <outlet property="drawModePopup" destination="Gr6-gt-ube" id="2cE-X7-u1Z"/>
                         <outlet property="idTextField" destination="poa-r0-kPq" id="CZA-B4-wyB"/>
                         <outlet property="mtkview" destination="UgJ-gs-uU1" id="jBe-JP-lUq"/>
                         <outlet property="primitivePopup" destination="DB7-3b-ohD" id="k0f-BR-4JL"/>
-                        <outlet property="primitiveType" destination="DB7-3b-ohD" id="Wg4-Ds-Nzg"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
