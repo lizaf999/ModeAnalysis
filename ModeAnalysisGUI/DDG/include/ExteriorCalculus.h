@@ -18,6 +18,7 @@ SparseMatrix<double>* reshapeForModeAnalysis(SparseMatrix<double>* matrix,vector
 
 void calcEigenValueandVector(SparseMatrix<double>* matrix,VectorXd* eigenValues, MatrixXd* eigenVectors);
 MatrixXd* getGeneralizedEigenVectors(MatrixXd* eigenVectors,vector<bool> isFixed, HEGraph* graph);
+Eigen::MatrixXd* reverseEigenVectors(MatrixXd* eigenVectors);
 
 void printDisplacedVertices(vector<Vector3d> vertices,VectorXd eigenVector,vector<bool> isFixed);
 VectorXd getFullEigenVector(VectorXd eigenVector,vector<bool> isFixed);

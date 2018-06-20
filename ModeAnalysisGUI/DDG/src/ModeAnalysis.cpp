@@ -36,7 +36,7 @@ void ModeAnalysis::solveEigenProblem()
   eigenValues = new VectorXd();
   calcEigenValueandVector(matrix_small,eigenValues,vecs);
 
-  eigenVectors = vecs;
+  eigenVectors = reverseEigenVectors(vecs);
   cout << *eigenValues << endl;
 }
 

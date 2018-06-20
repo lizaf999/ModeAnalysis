@@ -188,6 +188,21 @@ Eigen::MatrixXd* getGeneralizedEigenVectors(MatrixXd* eigenVectors, vector<bool>
   return matrix;
 }
 
+Eigen::MatrixXd* reverseEigenVectors(MatrixXd* eigenVectors)
+{
+  int nRow = eigenVectors->rows();
+  int nCol = eigenVectors->cols();
+  MatrixXd* matrix = new MatrixXd();
+  *matrix = MatrixXd::Zero(nRow,nCol);
+
+  for(int i=0;i<nRow;i++){
+    for(int j=0;j<nCol;j++){
+      (*matrix)(i,j) = (*eigenVectors)(i,nCol-j-1);
+    }
+  }
+  return matrix;
+}
+
 void printDisplacedVertices(vector<Vector3d> vertices,VectorXd eigenVector,vector<bool> isFixed)
 {
   cout << "print vertices" << endl;
