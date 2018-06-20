@@ -1,8 +1,9 @@
 #  ModeAnalysisGUI
 <img width="499" alt="torus" src="https://user-images.githubusercontent.com/37180011/38131573-96bed6f0-3442-11e8-9659-5c6c87f30a87.png">
 
-|![](https://user-images.githubusercontent.com/37180011/41652174-53718d1e-74bd-11e8-95ca-1ec84b843c80.png)|![]https://user-images.githubusercontent.com/37180011/41652244-7c73ebe4-74bd-11e8-8325-a41c1dba11fc.png|
-|![]https://user-images.githubusercontent.com/37180011/41652248-82c1a9aa-74bd-11e8-88c4-4a669174a08d.png|![]https://user-images.githubusercontent.com/37180011/41652270-88bcc614-74bd-11e8-8228-a32fc4ee3bb4.png|
+|--|--|
+|![](https://user-images.githubusercontent.com/37180011/41652174-53718d1e-74bd-11e8-95ca-1ec84b843c80.png)|![](https://user-images.githubusercontent.com/37180011/41652244-7c73ebe4-74bd-11e8-8325-a41c1dba11fc.png)|
+|![](https://user-images.githubusercontent.com/37180011/41652248-82c1a9aa-74bd-11e8-88c4-4a669174a08d.png)|![](https://user-images.githubusercontent.com/37180011/41652270-88bcc614-74bd-11e8-8228-a32fc4ee3bb4.png)|
 
 
 
