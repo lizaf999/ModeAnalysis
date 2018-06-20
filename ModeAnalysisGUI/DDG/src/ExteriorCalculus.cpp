@@ -38,8 +38,31 @@ SparseMatrix<double>* getLaplacian0form(vector<bool> isFixed,HEGraph* graph)
   }
   cout << " finished." << endl;
   
-  
-  
+  return M;
+}
+
+SparseMatrix<double>* getCombinationalLaplacian(vector<bool> isFixed,HEGraph* graph)
+{
+  cout << "getLaplacian0form start.";
+  int n = graph->vertices.size();
+
+  SparseMatrix<double>* M = new SparseMatrix<double>(n,n);
+  M->reserve(6*n);
+  for(auto vertex: graph->vertices){
+    int id = vertex->ID;
+    if(isFixed[id]){
+      M->insert(id, id) = 1;
+    }else{
+      for(auto edge: vertex->flows){
+        int nextID = edge->next->vertex->ID;
+        if(!isFixed[nextID]){M->insert(id,nextID) = -1;}
+        else{}
+      }
+      M->insert(id, id) = vertex->flows.size();
+    }
+  }
+  cout << " finished." << endl;
+
   return M;
 }
 
@@ -104,20 +127,23 @@ SparseMatrix<double>* reshapeForModeAnalysis(SparseMatrix<double>* matrix,vector
   
   SparseMatrix<double>* matrix_tar = new SparseMatrix<double>(n,n);
   matrix_tar->reserve(6*n);
-  int col = 0;
-  for(int i=0;i<matrix->cols();i++){
+
+  int nOuter = matrix->outerSize();
+  int nowCol = 0;
+  for (int i=0; i<nOuter; i++) {
     if(!isFixed[i]){
-      for(int j=0;j<matrix->rows();j++){
-        int newID = j;
+      for (SparseMatrix<double>::InnerIterator it(*matrix,i); it; ++it) {
+        int row = it.row();
+        int newID = row;
         if (isFixed[newID]) {
           continue;
         }
-        for(int k=0;k<j;k++){
+        for(int k=0;k<row;k++){
           if(isFixed[k]) newID--;
         }
-        matrix_tar->insert(col, newID) = matrix->coeffRef(i, j);//右辺の行列が密行列になるかも
+        matrix_tar->insert(nowCol, newID) = matrix->coeff(it.row(), it.col());
       }
-      col++;
+      nowCol++;
     }
   }
   cout << " finished." << endl;
@@ -157,6 +183,21 @@ Eigen::MatrixXd* getGeneralizedEigenVectors(MatrixXd* eigenVectors, vector<bool>
   for(int i=0;i<nRow;i++){
     for(int j=0;j<nCol;j++){
       (*matrix)(i,j) = (*eigenVectors)(i,j)/dualArea(i);
+    }
+  }
+  return matrix;
+}
+
+Eigen::MatrixXd* reverseEigenVectors(MatrixXd* eigenVectors)
+{
+  int nRow = eigenVectors->rows();
+  int nCol = eigenVectors->cols();
+  MatrixXd* matrix = new MatrixXd();
+  *matrix = MatrixXd::Zero(nRow,nCol);
+
+  for(int i=0;i<nRow;i++){
+    for(int j=0;j<nCol;j++){
+      (*matrix)(i,j) = (*eigenVectors)(i,nCol-j-1);
     }
   }
   return matrix;
