@@ -11,6 +11,7 @@
 		C3132E1320D9377E0013B098 /* bunny_res3.ply in Resources */ = {isa = PBXBuildFile; fileRef = C3132E1220D9377E0013B098 /* bunny_res3.ply */; };
 		C3132E1520D939460013B098 /* bunny_res4.ply in Resources */ = {isa = PBXBuildFile; fileRef = C3132E1420D939460013B098 /* bunny_res4.ply */; };
 		C3132E1920D94B0A0013B098 /* Teapot.obj in Resources */ = {isa = PBXBuildFile; fileRef = C3132E1820D94B0A0013B098 /* Teapot.obj */; };
+		C3132E1B20D9F9DB0013B098 /* bunny.obj in Resources */ = {isa = PBXBuildFile; fileRef = C3132E1A20D9F9DB0013B098 /* bunny.obj */; };
 		C3188A45205CE2FD00C5080F /* Mesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3188A3B205CE2FD00C5080F /* Mesh.swift */; };
 		C3188A46205CE2FD00C5080F /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3188A3D205CE2FD00C5080F /* Math.swift */; };
 		C3188A47205CE2FE00C5080F /* UniformState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3188A3E205CE2FD00C5080F /* UniformState.swift */; };
@@ -49,6 +50,7 @@
 		C3132E1220D9377E0013B098 /* bunny_res3.ply */ = {isa = PBXFileReference; lastKnownFileType = text; path = bunny_res3.ply; sourceTree = "<group>"; };
 		C3132E1420D939460013B098 /* bunny_res4.ply */ = {isa = PBXFileReference; lastKnownFileType = text; path = bunny_res4.ply; sourceTree = "<group>"; };
 		C3132E1820D94B0A0013B098 /* Teapot.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = Teapot.obj; sourceTree = "<group>"; };
+		C3132E1A20D9F9DB0013B098 /* bunny.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = bunny.obj; sourceTree = "<group>"; };
 		C3188A3B205CE2FD00C5080F /* Mesh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mesh.swift; sourceTree = "<group>"; };
 		C3188A3D205CE2FD00C5080F /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
 		C3188A3E205CE2FD00C5080F /* UniformState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniformState.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 		C347B87D20577E92000232FC = {
 			isa = PBXGroup;
 			children = (
+				C3132E1A20D9F9DB0013B098 /* bunny.obj */,
 				C3132E1820D94B0A0013B098 /* Teapot.obj */,
 				C3132E1420D939460013B098 /* bunny_res4.ply */,
 				C3132E1220D9377E0013B098 /* bunny_res3.ply */,
@@ -283,6 +286,7 @@
 				C3C1CE61205A72F00064B5D1 /* Main.storyboard in Resources */,
 				C3132E1320D9377E0013B098 /* bunny_res3.ply in Resources */,
 				C3132E1520D939460013B098 /* bunny_res4.ply in Resources */,
+				C3132E1B20D9F9DB0013B098 /* bunny.obj in Resources */,
 				C3132E1920D94B0A0013B098 /* Teapot.obj in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

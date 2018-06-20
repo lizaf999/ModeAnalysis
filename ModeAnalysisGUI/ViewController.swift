@@ -170,7 +170,7 @@ class ViewController: NSViewController {
       case .SphereImplicit:
         mode = SphereImplicit()
       case .Bunny:
-        mode = InputMesh(filename: "bunny_res4", Extension: "ply")
+        mode = InputMesh(filename: "bunny", Extension: "obj")
       case .Teapot:
         mode = InputMesh(filename: "Teapot", Extension: "obj")
       }

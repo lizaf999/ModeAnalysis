@@ -24,7 +24,7 @@ vertex ShdaderInOut staticShaderVertex(VertexIn in [[stage_in]],
                                        const device VertexUniforms &uniforms[[buffer(1)]]) {
   ShdaderInOut out;
   
-  float4 displaced = in.position + in.normal*in.value*0.3*sin(uniforms.time*2.5);
+  float4 displaced = in.position + in.normal*in.value*0.3*sin(uniforms.time*2.5)*0;
   out.position = uniforms.projectionView * displaced;
   
   float3 lightDir = normalize(float3(-1,1,-1));
@@ -32,7 +32,7 @@ vertex ShdaderInOut staticShaderVertex(VertexIn in [[stage_in]],
   
   float r = (in.value/3+0.2)*2;
   Colors type = triple;
-  float4 color = Blender((r-0.5)*sin(uniforms.time*2.5)+0.5,type);
+  float4 color = Blender(r,type);//Blender((r-0.5)*sin(uniforms.time*2.5)+0.5,type);
   
   diffuse += 0.3;
   //diffuse = 1;
