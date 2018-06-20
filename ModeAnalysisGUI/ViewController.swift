@@ -80,8 +80,9 @@ class ViewController: NSViewController {
     case GeodesicDome = "GeodesicDome"
     case SphereImplicit = "SphereImplict"
     case Bunny = "Bunny"
+    case Teapot = "Teapot"
     
-    static let types:[String] = [Parallelogram,Sphere,Torus,GeodesicDome,SphereImplicit,Bunny].map{$0.rawValue}
+    static let types:[String] = [Parallelogram,Sphere,Torus,GeodesicDome,SphereImplicit,Bunny,Teapot].map{$0.rawValue}
   }
   
   enum DrawMode:String {
@@ -170,6 +171,8 @@ class ViewController: NSViewController {
         mode = SphereImplicit()
       case .Bunny:
         mode = InputMesh(filename: "bunny_res4", Extension: "ply")
+      case .Teapot:
+        mode = InputMesh(filename: "Teapot", Extension: "obj")
       }
       
       mode.setMesh()
