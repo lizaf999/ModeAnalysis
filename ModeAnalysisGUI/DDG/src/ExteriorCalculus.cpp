@@ -38,8 +38,31 @@ SparseMatrix<double>* getLaplacian0form(vector<bool> isFixed,HEGraph* graph)
   }
   cout << " finished." << endl;
   
-  
-  
+  return M;
+}
+
+SparseMatrix<double>* getCombinationalLaplacian(vector<bool> isFixed,HEGraph* graph)
+{
+  cout << "getLaplacian0form start.";
+  int n = graph->vertices.size();
+
+  SparseMatrix<double>* M = new SparseMatrix<double>(n,n);
+  M->reserve(6*n);
+  for(auto vertex: graph->vertices){
+    int id = vertex->ID;
+    if(isFixed[id]){
+      M->insert(id, id) = 1;
+    }else{
+      for(auto edge: vertex->flows){
+        int nextID = edge->next->vertex->ID;
+        if(!isFixed[nextID]){M->insert(id,nextID) = -1;}
+        else{}
+      }
+      M->insert(id, id) = vertex->flows.size();
+    }
+  }
+  cout << " finished." << endl;
+
   return M;
 }
 

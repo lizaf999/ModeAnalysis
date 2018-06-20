@@ -25,8 +25,7 @@ void ModeAnalysis::solveEigenProblem()
   graph->setElements(vertices,faces);
   isFixed = detectBoundary(graph);
 
-  matrix = getLaplacian0form(isFixed,graph);
-  convert0formToGenenalized3form(matrix,isFixed,graph);
+  matrix = getCombinationalLaplacian(isFixed, graph);
 
   matrix_small = reshapeForModeAnalysis(matrix,isFixed);
   if (matrix!=matrix_small) {
@@ -37,8 +36,8 @@ void ModeAnalysis::solveEigenProblem()
   eigenValues = new VectorXd();
   calcEigenValueandVector(matrix_small,eigenValues,vecs);
 
-  eigenVectors = getGeneralizedEigenVectors(vecs,isFixed,graph);
-
+  eigenVectors = vecs;
+  cout << *eigenValues << endl;
 }
 
 vector<double> ModeAnalysis::getEigenValues()

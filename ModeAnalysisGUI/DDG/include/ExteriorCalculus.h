@@ -12,6 +12,7 @@ using namespace Eigen;
 //呼ぶ順番が複雑
 vector<bool> detectBoundary(HEGraph* graph);
 SparseMatrix<double>* getLaplacian0form(vector<bool> isFixed,HEGraph* graph);
+SparseMatrix<double>* getCombinationalLaplacian(vector<bool> isFixed,HEGraph* graph);
 void convert0formToGenenalized3form(SparseMatrix<double>* matrix,vector<bool> isFixed,HEGraph* graph);
 SparseMatrix<double>* reshapeForModeAnalysis(SparseMatrix<double>* matrix,vector<bool> isFixed);
 
