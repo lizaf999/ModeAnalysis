@@ -53,6 +53,8 @@ class UniformState
     get{
       if !isSuspended{
         _controlableTime += deltaTime
+      }else{
+        _controlableTime = 0
       }
       return _controlableTime
     }
