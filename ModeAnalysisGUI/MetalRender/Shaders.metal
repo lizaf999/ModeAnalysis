@@ -24,7 +24,7 @@ vertex ShdaderInOut staticShaderVertex(VertexIn in [[stage_in]],
                                        const device VertexUniforms &uniforms[[buffer(1)]]) {
   ShdaderInOut out;
   
-  float4 displaced = in.position + in.normal*in.value*0.3*sin(uniforms.time*2.5)*0;
+  float4 displaced = in.position + in.normal*in.value*0.3*sin(uniforms.time*2.5);
   out.position = uniforms.projectionView * displaced;
   
   float3 lightDir = normalize(float3(-1,1,-1));
