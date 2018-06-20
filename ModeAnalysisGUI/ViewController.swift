@@ -174,7 +174,6 @@ class ViewController: NSViewController {
       case .Teapot:
         mode = InputMesh(filename: "Teapot", Extension: "obj")
       }
-      
       mode.setMesh()
       drawPrimitive()
     }
