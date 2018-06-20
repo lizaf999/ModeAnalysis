@@ -104,20 +104,23 @@ SparseMatrix<double>* reshapeForModeAnalysis(SparseMatrix<double>* matrix,vector
   
   SparseMatrix<double>* matrix_tar = new SparseMatrix<double>(n,n);
   matrix_tar->reserve(6*n);
-  int col = 0;
-  for(int i=0;i<matrix->cols();i++){
+
+  int nOuter = matrix->outerSize();
+  int nowCol = 0;
+  for (int i=0; i<nOuter; i++) {
     if(!isFixed[i]){
-      for(int j=0;j<matrix->rows();j++){
-        int newID = j;
+      for (SparseMatrix<double>::InnerIterator it(*matrix,i); it; ++it) {
+        int row = it.row();
+        int newID = row;
         if (isFixed[newID]) {
           continue;
         }
-        for(int k=0;k<j;k++){
+        for(int k=0;k<row;k++){
           if(isFixed[k]) newID--;
         }
-        matrix_tar->insert(col, newID) = matrix->coeffRef(i, j);//右辺の行列が密行列になるかも
+        matrix_tar->insert(nowCol, newID) = matrix->coeff(it.row(), it.col());
       }
-      col++;
+      nowCol++;
     }
   }
   cout << " finished." << endl;
